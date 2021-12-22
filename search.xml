@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Test</title>
+    <url>/2021/12/22/Test/</url>
+    <content><![CDATA[<h2 id="数学公式测试"><a href="#数学公式测试" class="headerlink" title="数学公式测试"></a>数学公式测试</h2><p>一个简单的积分：</p>
+<p>$$ \displaystyle{\int_{-\infty}^{\infty}{\left( \frac{\sin x}{x} \right) ^{2n}}\mathrm{d}x=\frac{\pi}{\left( 2n-1 \right) !}\sum_{k=0}^n{\left( -1 \right) ^k\left( \begin{array}{c}<br>    2n\<br>    k\<br>\end{array} \right) \left( n-k \right) ^{2n-1}}} $$</p>
+<h2 id="代码测试"><a href="#代码测试" class="headerlink" title="代码测试"></a>代码测试</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Test</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2021/12/21/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -19,18 +32,5 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Test</title>
-    <url>/2021/12/22/Test/</url>
-    <content><![CDATA[<h2 id="数学公式测试"><a href="#数学公式测试" class="headerlink" title="数学公式测试"></a>数学公式测试</h2><p>一个简单的积分：</p>
-<p>$$ \displaystyle{\int_{-\infty}^{\infty}{\left( \frac{\sin x}{x} \right) ^{2n}}\mathrm{d}x=\frac{\pi}{\left( 2n-1 \right) !}\sum_{k=0}^n{\left( -1 \right) ^k\left( \begin{array}{c}<br>    2n\<br>    k\<br>\end{array} \right) \left( n-k \right) ^{2n-1}}} $$</p>
-<h2 id="代码测试"><a href="#代码测试" class="headerlink" title="代码测试"></a>代码测试</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Test</category>
-      </categories>
-      <tags>
-        <tag>Math</tag>
-      </tags>
   </entry>
 </search>
