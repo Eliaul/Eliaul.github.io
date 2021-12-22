@@ -42,8 +42,7 @@
   <entry>
     <title>Gauss&#39;s digamma定理的证明</title>
     <url>/2021/12/22/Gauss&#39;s%20digamma%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E%20/</url>
-    <content><![CDATA[<hr />
-<p>作为博客的第一篇文章，今天证明digamma函数的一个公式：</p>
+    <content><![CDATA[<p>作为博客的第一篇文章，今天证明digamma函数的一个公式：</p>
 <p><span class="math display">\[ \displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\frac{\pi}{2}\cot \frac{p\pi}{q}-\ln q+\sum_{n=1}^{q-1}{\cos \frac{2np\pi}{q}\ln \left( 2\sin \frac{n\pi}{q} \right)}} \]</span></p>
 <p>其中<span class="math inline">\(p,q\in\mathbb{N},0&lt;p&lt;q\)</span>.这个公式表明对于任意的在0,1之间的有理数，digamma函数都是有封闭表达的。事实上，这个公式的证明并不是很困难。</p>
 <span id="more"></span>
