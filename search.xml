@@ -43,7 +43,7 @@
 <p>于是</p>
 <p>$$\displaystyle{\sum_{n=0}^{\infty}{\frac{qt^{p+nq}}{p+nq}}=-\sum_{k=0}^{q-1}{\omega ^{-kp}\ln \left( 1-\omega ^kt \right)}}$$</p>
 <p>所以</p>
-<p>$$\begin{aligned}&amp;\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}<br>\<br>=&amp;-t^{p-q}\ln \left( 1-t^q \right) +\sum_{n=0}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^nt \right)}<br>\<br>=&amp;-t^{p-q}\ln \frac{1-t^q}{1-t}-\left( t^{p-q}-1 \right) \ln \left( 1-t \right) +\sum_{n=1}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^nt \right)}<br>\\end{aligned}$$</p>
+<p>$$\begin{aligned}&amp;\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}<br>\<br>=&amp;-t^{p-q}\ln \left( 1-t^q \right) +\sum_{n=0}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^nt \right)}<br>\<br>=&amp;-t^{p-q}\ln \frac{1-t^q}{1-t}-\left( t^{p-q}-1 \right) \ln \left( 1-t \right) +\sum_{n=1}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^nt \right)}<br>\end{aligned}$$</p>
 <p>令$t\rightarrow 1^{-}$,那么</p>
 <p>$$\displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\ln q+\sum_{n=1}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^n \right)}}$$</p>
 <p>再用$q-p$替代$p$,得</p>
