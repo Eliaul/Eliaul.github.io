@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Series multisection公式</title>
+    <url>/2021/12/23/Series%20multisection%E5%85%AC%E5%BC%8F/</url>
+    <content><![CDATA[<p>昨天的博客中使用了Series multisection公式，即：</p>
+<p>如果</p>
+<p><span class="math display">\[\displaystyle{f\left( x \right) =\sum_{n=0}^{\infty}{a_nx^n}}\]</span></p>
+<p>那么</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{a_{p+nq}x^{p+nq}}=\frac{1}{q}\sum_{n=0}^{q-1}{\omega ^{-np}f\left( \omega ^nx \right)}}\]</span></p>
+<p>其中<span class="math inline">\(\omega =e^{\frac{2\pi \mathrm{i}}{q}}\)</span>.今天就来证明这个公式，并导出一些有意思的结果.</p>
+<span id="more"></span>
+<h3 id="证明">证明</h3>
+<p>首先我们考虑</p>
+<p><span class="math display">\[1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}\]</span></p>
+<p>的值，很显然，如果<span class="math inline">\(k=nq\)</span>，那么<span class="math inline">\(\omega ^k=1\)</span>，则</p>
+<p><span class="math display">\[1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}=q\]</span></p>
+<p>如果<span class="math inline">\(k\neq nq\)</span>，那么由等比数列求和公式：</p>
+<p><span class="math display">\[\displaystyle{1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}=\frac{1-\omega ^{kq}}{1-\omega ^k}}\]</span></p>
+<p>而<span class="math inline">\(\omega ^k\ne 1,\omega ^{kq}=1\)</span>，所以</p>
+<p><span class="math display">\[1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}=0\]</span></p>
+<p>综合起来，有</p>
+<p><span class="math display">\[\boxed{\displaystyle{1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}=\frac{1-\omega ^{kq}}{1-\omega ^k}=\left\{ \begin{array}{c}
+    q,\,k=nq\\
+    0,\,k\ne nq\\
+\end{array} \right. }}\]</span></p>
+<p>所以</p>
+<p><span class="math display">\[\begin{aligned}&amp;f\left( x \right) +\omega ^{-p}f\left( \omega x \right) +\omega ^{-2p}f\left( \omega ^2x \right) +\cdots +\omega ^{-\left( q-1 \right) p}f\left( \omega ^{q-1}x \right) 
+\\
+=&amp;\sum_{n=0}^{\infty}{a_n\left( 1+\omega ^{n-p}+\omega ^{2\left( n-p \right)}+\cdots +\omega ^{\left( q-1 \right) \left( n-p \right)} \right) x^n}\end{aligned}\]</span></p>
+<p>根据上面的讨论，这个级数只有在<span class="math inline">\(n-p\)</span>取<span class="math inline">\(q\)</span>的整数倍才可能不为<span class="math inline">\(0\)</span>，故</p>
+<p><span class="math display">\[\begin{aligned}&amp;f\left( x \right) +\omega ^{-p}f\left( \omega x \right) +\omega ^{-2p}f\left( \omega ^2x \right) +\cdots +\omega ^{-\left( q-1 \right) p}f\left( \omega ^{q-1}x \right) 
+\\
+=&amp;\sum_{n=0}^{\infty}{a_n\left( 1+\omega ^{n-p}+\omega ^{2\left( n-p \right)}+\cdots +\omega ^{\left( q-1 \right) \left( n-p \right)} \right) x^n}
+\\
+=&amp;q\sum_{n=0}^{\infty}{a_{p+nq}x^{p+nq}}\end{aligned}\]</span></p>
+<p>这样便证明了：</p>
+<p><span class="math display">\[\boxed{\displaystyle{\sum_{n=0}^{\infty}{a_{p+nq}x^{p+nq}}=\frac{1}{q}\sum_{n=0}^{q-1}{\omega ^{-np}f\left( \omega ^nx \right)}}}\]</span></p>
+<p>如果我们取<span class="math inline">\(f(x)=e^{x}\)</span>，那么</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{\frac{x^{pn+q}}{\left( pn+q \right) !}}=\frac{1}{q}\sum_{k=0}^{q-1}{e^{x\cos \left( \frac{2k\pi}{q} \right)}\cos \left[ x\sin \left( \frac{2k\pi}{q} \right) -\frac{2kp\pi}{q} \right]}}\]</span></p>
+<p>可以得到下面的结果：</p>
+<p><span class="math display">\[\begin{aligned}&amp;\sum_{n=0}^{\infty}{\frac{x^{3n}}{\left( 3n \right) !}}=\frac{1}{3}\left( e^x+2e^{-\frac{x}{2}}\cos \frac{\sqrt{3}x}{2} \right) 
+\\
+&amp;\sum_{n=0}^{\infty}{\frac{x^{3n+1}}{\left( 3n+1 \right) !}}=\frac{1}{3}\left( e^x-e^{-\frac{x}{2}}\cos \frac{\sqrt{3}x}{2}+\sqrt{3}e^{-\frac{x}{2}}\sin \frac{\sqrt{3}x}{2} \right) 
+\\
+&amp;\sum_{n=0}^{\infty}{\frac{x^{5n}}{\left( 5n \right) !}}=\frac{e^x}{5}+\frac{2}{5}e^{-\frac{1+\sqrt{5}}{4}x}\cos \left( \sqrt{\frac{5}{8}-\frac{\sqrt{5}}{8}}x \right) +\frac{2}{5}e^{\frac{\sqrt{5}-1}{4}x}\cos \left( \sqrt{\frac{5}{8}+\frac{\sqrt{5}}{8}}x \right) \end{aligned}\]</span></p>
+<p>如果取<span class="math inline">\(f(x)=\cos\sqrt{x}\)</span>，那么</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^{p+nq}x^{2p+2nq}}{\left( 2p+2nq \right) !}}=\frac{1}{q}\sum_{k=0}^{q-1}{\left[ \cos \left( \frac{2kp\pi}{q} \right) \cosh \left( x\sin \frac{k\pi}{q} \right) \cos \left( x\cos \frac{k\pi}{q} \right) -\sin \left( \frac{2kp\pi}{q} \right) \sinh \left( x\sin \frac{k\pi}{q} \right) \sin \left( x\cos \frac{k\pi}{q} \right) \right]}}\]</span></p>
+<p>可以得到以下结果：</p>
+<p><span class="math display">\[\begin{aligned}&amp;\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^nx^{6n}}{\left( 6n \right) !}}=\frac{\cos x}{3}+\frac{2}{3}\cos \frac{x}{2}\cosh \frac{\sqrt{3}x}{2}
+\\
+&amp;\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^nx^{2+6n}}{\left( 2+6n \right) !}}=-\frac{\cos x}{3}+\frac{1}{3}\cos \frac{x}{2}\cosh \frac{\sqrt{3}x}{2}+\frac{1}{\sqrt{3}}\sin \frac{x}{2}\sinh \frac{\sqrt{3}x}{2}
+\\
+&amp;\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^nx^{10n}}{\left( 10n \right) !}}=\frac{\cos x}{5}+\frac{2}{5}\cos \left( \frac{\sqrt{5}+1}{4}x \right) \cosh \left( \sqrt{\frac{5}{8}-\frac{\sqrt{5}}{8}}x \right) +\frac{2}{5}\cos \left( \frac{\sqrt{5}-1}{4}x \right) \cosh \left( \sqrt{\frac{5}{8}+\frac{\sqrt{5}}{8}}x \right) \end{aligned}\]</span></p>
+<p>这些结果常规做法是很难计算的。</p>
+]]></content>
+      <categories>
+        <category>数学分析</category>
+      </categories>
+      <tags>
+        <tag>级数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Gauss&#39;s digamma定理的证明</title>
     <url>/2021/12/22/Gauss%20digamma%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/</url>
     <content><![CDATA[<p>作为博客的第一篇文章，今天证明digamma函数的一个公式：</p>
@@ -60,9 +121,9 @@
 <p>于是便证明了</p>
 <p><span class="math display">\[\boxed{\color{blue}{\displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\frac{\pi}{2}\cot \left( \frac{p\pi}{q} \right) -\ln q+\sum_{n=1}^{q-1}{\cos \left( \frac{2n\pi p}{q} \right) \ln \left( 2\sin \frac{n\pi}{q} \right)}}}}\]</span></p>
 <p>有了这个公式，便可以很快的求出一些不那么“显然的”值：</p>
-<p><span class="math display">\[\begin{aligned}\psi \left( \frac{2}{5} \right) &amp;=-\gamma -\frac{1}{2}\sqrt{1-\frac{2}{\sqrt{5}}}\pi +\frac{\sqrt{5}\mathrm{arc}\coth \sqrt{5}}{2}-\frac{5\ln 5}{4}
+<p><span class="math display">\[\begin{aligned}\psi \left( \frac{2}{5} \right) &amp;=-\gamma -\frac{1}{2}\sqrt{1-\frac{2}{\sqrt{5}}}\pi +\frac{\sqrt{5}\mathrm{arccoth}\, \sqrt{5}}{2}-\frac{5\ln 5}{4}
 \\
-\psi \left( \frac{1}{8} \right) &amp;=-\gamma -\frac{\sqrt{2}+1}{2}\pi -\sqrt{2}\mathrm{arc}\coth \sqrt{2}-4\ln 2
+\psi \left( \frac{1}{8} \right) &amp;=-\gamma -\frac{\sqrt{2}+1}{2}\pi -\sqrt{2}\mathrm{arccoth}\, \sqrt{2}-4\ln 2
 \\
 \psi \left( \frac{1}{20} \right) &amp;=-\gamma -\frac{1+\sqrt{5}+\sqrt{5+2\sqrt{5}}}{2}\pi -3\ln 2-\frac{5\ln 5}{4}-\frac{3\sqrt{5}\ln 2}{4}
 \\
