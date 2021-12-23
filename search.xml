@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>一个和傅里叶变换有关的重积分等式</title>
+    <url>/2021/12/23/%E4%B8%80%E4%B8%AA%E5%92%8C%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E6%9C%89%E5%85%B3%E7%9A%84%E9%87%8D%E7%A7%AF%E5%88%86%E7%AD%89%E5%BC%8F/</url>
+    <content><![CDATA[<p>本文证明下面两个积分公式：</p>
+<p><span class="math display">\[\begin{aligned}&amp;\int_{\mathbb{R}}{g\left( x \right) \prod_{k=1}^n{f_k\left( x \right)}}\mathrm{d}x=\frac{1}{\left( \sqrt{2\pi} \right) ^{n-1}}\int_{\mathbb{R} ^n}{\hat{g}\left( -\sum_{k=1}^n{\omega _k} \right) \prod_{k=1}^n{\hat{f}_k\left( \omega _k \right)}}\prod_{k=1}^n{\mathrm{d}\omega _k}
+\\
+&amp;\int_{\mathbb{R} ^n}{g\left( -\sum_{k=1}^n{x_k} \right) \prod_{k=1}^n{f_k\left( x_k \right)}}\prod_{k=1}^n{\mathrm{d}x_k}=\left( \sqrt{2\pi} \right) ^{n-1}\int_{\mathbb{R} ^n}{\hat{g}\left( \omega \right) \prod_{k=1}^n{\hat{f}_k\left( \omega \right)}}\mathrm{d}\omega \end{aligned}\]</span></p>
+<p>其中</p>
+<p><span class="math display">\[\displaystyle{\hat{f}_k\left( \omega _k \right) =\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}{f_k\left( x \right) e^{-\mathrm{i}\omega _kx}}\mathrm{d}x}\]</span></p>
+<p>为<span class="math inline">\(f_k (x)\)</span>的傅里叶变换.</p>
+<span id="more"></span>
+<h3 id="证明">证明</h3>
+<p>只需要注意到：</p>
+<p><span class="math display">\[\begin{aligned}&amp;\quad\int_{\mathbb{R}}{g\left( x \right) \prod_{k=1}^n{f_k\left( x \right)}}\mathrm{d}x\\&amp;=\int_{\mathbb{R}}{g\left( x \right) \left[ \prod_{k=1}^n{\frac{1}{\sqrt{2\pi}}\int_{\mathbb{R}}{\hat{f}_k\left( \omega _k \right) e^{\mathrm{i}\omega _kx}}\mathrm{d}\omega _k} \right]}\mathrm{d}x
+\\
+&amp;=\frac{1}{\left( 2\pi \right) ^{\frac{n-1}{2}}}\int_{\mathbb{R} ^n}{\prod_{k=1}^n{\hat{f}_k\left( \omega _k \right)}\left[ \frac{1}{\sqrt{2\pi}}\int_{\mathbb{R}}{g\left( x \right) e^{\mathrm{i}\left( \sum\limits_{k=1}^n{\omega _k} \right) x}}\mathrm{d}x \right]}\prod_{k=1}^n{\mathrm{d}\omega _k}
+\\
+&amp;=\frac{1}{\left( 2\pi \right) ^{\frac{n-1}{2}}}\int_{\mathbb{R} ^n}{\hat{g}\left( -\sum_{k=1}^n{\omega _k} \right) \prod_{k=1}^n{\hat{f}_k\left( \omega _k \right)}}\prod_{k=1}^n{\mathrm{d}\omega _k}\end{aligned}\]</span></p>
+<p>即可。对于第二个，其实就是倒着再写一遍，即</p>
+<p><span class="math display">\[ \begin{aligned}&amp;\quad\int_{\mathbb{R} ^n}{g\left( -\sum_{k=1}^n{x_k} \right) \prod_{k=1}^n{f_k\left( x_k \right)}}\prod_{k=1}^n{\mathrm{d}x_k}
+\\
+&amp;=\int_{\mathbb{R} ^n}{\left[ \frac{1}{\sqrt{2\pi}}\int_{\mathbb{R}}{\hat{g}\left( \omega \right) e^{-\mathrm{i}\omega \sum\limits_{k=1}^n{x_k}}}\mathrm{d}\omega \right] \prod_{k=1}^n{f_k\left( x_k \right)}}\prod_{k=1}^n{\mathrm{d}x_k}
+\\
+&amp;=\left( 2\pi \right) ^{\frac{n-1}{2}}\int_{\mathbb{R} ^n}{\hat{g}\left( \omega \right) \left[ \prod_{k=1}^n{\frac{1}{\sqrt{2\pi}}\int_{\mathbb{R}}{f_k\left( x_k \right) e^{-\mathrm{i}\omega x_k}}\mathrm{d}x_k} \right]}\mathrm{d}\omega 
+\\
+&amp;=\left( 2\pi \right) ^{\frac{n-1}{2}}\int_{\mathbb{R} ^n}{\hat{g}\left( \omega \right) \prod_{k=1}^n{\hat{f}_k\left( \omega \right)}}\mathrm{d}\omega \end{aligned}\]</span></p>
+<p>证毕。用这两个公式可以构造一些形式非常漂亮的积分。例如：</p>
+<p>取<span class="math inline">\(\displaystyle{f_k\left( x \right) =g(x)=\sqrt{\frac{\pi}{2}}H\left( 1-\left| x \right| \right) }\)</span>，那么<span class="math inline">\(\displaystyle{\hat{f}_k\left( \omega _k \right) =\frac{\sin \omega _k}{\omega _k}}\)</span>,其中</p>
+<p><span class="math display">\[H\left( x \right) =\left\{ \begin{array}{c}
+    1,\,x&gt;0\\
+    0,\,x\leqslant 0\\
+\end{array} \right. \]</span></p>
+<p>为单位阶跃函数。那么根据第一个公式，有</p>
+<p><span class="math display">\[\boxed{\displaystyle{\int_{\mathbb{R} ^n}{\frac{\sin \left( \sum\limits_{k=1}^n{x_k} \right)}{\sum\limits_{k=1}^n{x_k}}\prod_{k=1}^n{\frac{\sin x_k}{x_k}}}\prod_{k=1}^n{\mathrm{d}x_k}=\frac{\pi ^n}{2}\int_{-\infty}^{\infty}{H^{n+1}\left( 1-\left| x \right| \right)}\mathrm{d}x=\frac{\pi ^n}{2}\int_{-1}^1{\mathrm{d}x}=\pi ^n}}\]</span></p>
+<p>取<span class="math inline">\(f_k\left( x \right) =g\left( x \right) =e^{-\mathrm{sgn} \left( x \right)}\)</span>,则<span class="math inline">\(\displaystyle{\hat{f}\left( \omega \right) =\sqrt{\frac{2}{\pi}}\frac{1}{1+\omega ^2}}\)</span>.应用第一个公式，故</p>
+<p><span class="math display">\[\boxed{\displaystyle{\int_{\mathbb{R} ^n}{\frac{1}{1+\left( \sum\limits_{k=1}^n{x_{k}^{2}} \right)}\prod_{k=1}^n{\frac{1}{1+x_{k}^{2}}}}\prod_{k=1}^n{\mathrm{d}x_k}=\pi ^n\int_0^{\infty}{e^{-\left( n+1 \right) x}}\mathrm{d}x=\frac{\pi ^n}{n+1}}}\]</span></p>
+<p>取<span class="math inline">\(\displaystyle{f_k\left( x_k \right) =H\left( x_k \right) \frac{\sin x_k}{x_k}}\)</span>,那么</p>
+<p><span class="math display">\[\displaystyle{f_k\left( \omega \right) =\frac{1}{2\sqrt{2\pi}}\left[ H\left( 1-\left| \omega \right| \right) \pi -\mathrm{i}\ln \left| \frac{1+\omega}{1-\omega} \right| \right] }\]</span></p>
+<p>取<span class="math inline">\(\displaystyle{g\left( x \right) =\frac{\sin x}{x}}\)</span>,那么</p>
+<p><span class="math display">\[\displaystyle{\hat{g}\left( \omega \right) =\frac{1}{\sqrt{2\pi}}H\left( 1-\left| \omega \right| \right) \pi }\]</span></p>
+<p>应用第二个公式，有</p>
+<p><span class="math display">\[\begin{aligned}&amp;\int_{\left[ 0,\infty \right] ^n}{\frac{\sin \left( \sum\limits_{k=1}^n{x_k} \right)}{\sum\limits_{k=1}^n{x_k}}\prod_{k=1}^n{\frac{\sin x_k}{x_k}}}\prod_{k=1}^n{\mathrm{d}x_k}
+\\
+=&amp;\frac{1}{2^{n+1}\pi}\int_{-\infty}^{\infty}{\left( H\left( 1-\left| \omega \right| \right) \pi -\mathrm{i}\ln \left| \frac{1+\omega}{1-\omega} \right| \right) ^n\pi H\left( 1-\left| \omega \right| \right)}\mathrm{d}\omega 
+\\
+=&amp;\frac{1}{2^{n+1}}\int_{-1}^1{\left( \pi +\mathrm{i}\ln \frac{1-\omega}{1+\omega} \right) ^n}\mathrm{d}\omega 
+\\
+=&amp;\frac{1}{2^{n+1}}\int_0^{\infty}{\frac{2\left( \pi +\mathrm{i}\ln x \right) ^n}{\left( 1+x \right) ^2}}\mathrm{d}x
+\\
+=&amp;\frac{1}{2^{n+1}}\int_{-\infty}^{\infty}{\frac{2e^x\left( \pi +\mathrm{i}x \right) ^n}{\left( 1+e^x \right) ^2}}\mathrm{d}x
+\\
+=&amp;\frac{1}{2^{n+1}}\int_{-\infty}^{\infty}{\frac{\left( \pi +\mathrm{i}x \right) ^n}{2\cosh ^2\frac{x}{2}}}\mathrm{d}x
+\\
+=&amp;\frac{1}{2^{n+1}}\int_{-\infty}^{\infty}{\frac{\left( \pi +2\mathrm{i}x \right) ^n}{\cosh ^2x}}\mathrm{d}x\end{aligned}\]</span></p>
+<p>考虑函数</p>
+<p><span class="math display">\[\displaystyle{f\left( z \right) =\frac{\left( \pi \mathrm{i} \right) ^nB_{n+1}\left( \frac{\pi +2\mathrm{i}z}{2\pi} \right)}{\left( n+1 \right) \cosh ^2z}}\]</span></p>
+<p>沿矩形围道<span class="math inline">\(\pm \infty ,\pm \infty -\pi \mathrm{i}\)</span>积分，则</p>
+<p><span class="math display">\[\displaystyle{\left( \frac{\mathrm{i}}{2} \right) ^n\int_{-\infty}^{\infty}{\frac{\left( \pi +2\mathrm{i}z \right) ^n}{\cosh ^2z}}\mathrm{d}z=2\pi \mathrm{i\,Res}\left[ f\left( z \right) ,-\frac{\pi \mathrm{i}}{2} \right] =2\left( -\pi \mathrm{i} \right) ^nB_n}\]</span></p>
+<p>即</p>
+<p><span class="math display">\[\boxed{\displaystyle{\int_{\left[ 0,\infty \right] ^n}{\frac{\sin \left( \sum\limits_{k=1}^n{x_k} \right)}{\sum\limits_{k=1}^n{x_k}}\prod_{k=1}^n{\frac{\sin x_k}{x_k}}}\prod_{k=1}^n{\mathrm{d}x_k}=\left( -1 \right) ^n \pi^nB_n}}\]</span></p>
+<p>取一些特例，就有</p>
+<p><span class="math display">\[\begin{aligned}&amp;\int_0^{\infty}{\int_0^{\infty}{\int_0^{\infty}{\int_0^{\infty}{\frac{\sin x\sin y\sin z\sin w\sin \left( x+y+z+w \right)}{xyzw\left( x+y+z+w \right)}}}}}\mathrm{d}x\mathrm{d}y\mathrm{d}z\mathrm{d}w=-\frac{\pi ^4}{30}
+\\
+&amp;\int_{-\infty}^{\infty}{\int_{-\infty}^{\infty}{\int_{-\infty}^{\infty}{\int_{-\infty}^{\infty}{\frac{\sin x\sin y\sin z\sin w\sin \left( x+y+z+w \right)}{xyzw\left( x+y+z+w \right)}}}}}\mathrm{d}x\mathrm{d}y\mathrm{d}z\mathrm{d}w=\pi ^4
+\\
+&amp;\int_{-\infty}^{\infty}{\int_{-\infty}^{\infty}{\int_{-\infty}^{\infty}{\int_{-\infty}^{\infty}{\frac{1}{\left( 1+x^2 \right) \left( 1+y^2 \right) \left( 1+z^2 \right) \left( 1+w^2 \right)}\frac{1}{1+\left( x+y+z+w \right) ^2}}}}}\mathrm{d}x\mathrm{d}y\mathrm{d}z\mathrm{d}w=\frac{\pi ^4}{5}\end{aligned}\]</span></p>
+]]></content>
+      <categories>
+        <category>复变函数与积分变换</category>
+      </categories>
+      <tags>
+        <tag>积分</tag>
+        <tag>积分变换</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Series multisection公式</title>
     <url>/2021/12/23/Series%20multisection%E5%85%AC%E5%BC%8F/</url>
     <content><![CDATA[<p>昨天的博客中使用了Series multisection公式，即：</p>
