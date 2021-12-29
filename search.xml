@@ -1,6 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Gauss&#39;s digamma定理的证明</title>
+    <url>/2021/12/22/Gauss%20digamma%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/</url>
+    <content><![CDATA[<p>作为博客的第一篇文章，今天证明digamma函数的一个公式：</p>
+<p><span class="math display">\[ \displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\frac{\pi}{2}\cot \frac{p\pi}{q}-\ln q+\sum_{n=1}^{q-1}{\cos \frac{2np\pi}{q}\ln \left( 2\sin \frac{n\pi}{q} \right)}} \]</span></p>
+<p>其中<span class="math inline">\(p,q\in\mathbb{N},0&lt;p&lt;q\)</span>.这个公式表明对于任意的在0,1之间的有理数，digamma函数都是有封闭表达的。事实上，这个公式的证明并不是很困难。</p>
+<span id="more"></span>
+<h3 id="证明">证明</h3>
+<p>利用digamma函数的级数表达式：</p>
+<p><span class="math display">\[\displaystyle{\psi \left( z \right) =-\gamma +\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{1}{z+n} \right)}}\]</span></p>
+<p>再利用Abel极限定理，那么</p>
+<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) +\gamma =\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right)}=\lim_{t\rightarrow 1^-} \sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}}\]</span></p>
+<p>继续化简，得</p>
+<p><span class="math display">\[\begin{aligned}
+&amp;\quad\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}
+\\&amp;=t^{p-q}\sum_{n=0}^{\infty}{\frac{t^{\left( n+1 \right) q}}{n+1}}-\sum_{n=0}^{\infty}{\frac{qt^{p+nq}}{p+nq}}
+\\
+&amp;=-t^{p-q}\ln \left( 1-t^q \right) -\sum_{n=0}^{\infty}{\frac{qt^{p+nq}}{p+nq}}
+\end{aligned}\]</span></p>
+<p>对于第二个级数，需要用到Series multisection：如果函数<span class="math inline">\(f(z)\)</span>可以展开为级数：</p>
+<p><span class="math display">\[\displaystyle{f\left( z \right) =\sum_{n=0}^{\infty}{a_nz^n}}\]</span></p>
+<p>那么有求和公式：</p>
+<p><span class="math display">\[\boxed{\displaystyle{\sum_{m=0}^{\infty}{a_{p+qm}z^{p+qm}}=\frac{1}{q}\sum_{k=0}^{q-1}{\omega ^{-kp}f\left( \omega ^kz \right)}}}\]</span></p>
+<p>其中<span class="math inline">\(\omega =e^{\frac{2\pi \mathrm{i}}{q}}\)</span>.</p>
+<p>于是</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{\frac{qt^{p+nq}}{p+nq}}=-\sum_{k=0}^{q-1}{\omega ^{-kp}\ln \left( 1-\omega ^kt \right)}}\]</span></p>
+<p>所以</p>
+<p><span class="math display">\[\begin{aligned}&amp;\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}
+\\
+=&amp;-t^{p-q}\ln \left( 1-t^q \right) +\sum_{n=0}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^nt \right)}
+\\
+=&amp;-t^{p-q}\ln \frac{1-t^q}{1-t}-\left( t^{p-q}-1 \right) \ln \left( 1-t \right) +\sum_{n=1}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^nt \right)}
+\end{aligned}\]</span></p>
+<p>令<span class="math inline">\(t\rightarrow 1^{-}\)</span>,那么</p>
+<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\ln q+\sum_{n=1}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^n \right)}}\]</span></p>
+<p>再用<span class="math inline">\(q-p\)</span>替代<span class="math inline">\(p\)</span>,得</p>
+<p><span class="math display">\[\displaystyle{\psi \left( \frac{q-p}{q} \right) =-\gamma -\ln q+\sum_{n=1}^{q-1}{\omega ^{-n\left( q-p \right)}\ln \left( 1-\omega ^n \right)}}\]</span></p>
+<p>两式相加，得</p>
+<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) +\psi \left( \frac{q-p}{q} \right) =-2\gamma-2\ln q+2\sum_{n=1}^{q-1}{\cos \left( \frac{2n\pi p}{q} \right) \ln \left( 1-\omega ^n \right)}}\]</span></p>
+<p>右式的实部为：</p>
+<p><span class="math display">\[\begin{aligned}\mathfrak{R} \left[ \ln \left( 1-\omega ^n \right) \right] &amp;=\frac{1}{2}\ln \left| 1-\omega ^n \right|
+\\
+&amp;=\frac{1}{2}\ln \left| 1-\cos \frac{2n\pi}{q}+\mathrm{i}\sin \frac{2n\pi}{q} \right|
+\\
+&amp;=\frac{1}{2}\ln \left[ \left( 1-\cos \frac{2n\pi}{q} \right) ^2+\sin ^2\frac{2n\pi}{q} \right] 
+\\
+&amp;=\frac{1}{2}\ln \left( 2-2\cos \frac{2n\pi}{q} \right) 
+\\
+&amp;=\frac{1}{2}\ln \left( 4\sin ^2\frac{n\pi}{q} \right) 
+\\
+&amp;=\ln \left( 2\sin \frac{n\pi}{q} \right) \end{aligned}\]</span></p>
+<p>即</p>
+<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) +\psi \left( \frac{q-p}{q} \right) =-2\gamma-2\ln q+2\sum_{n=1}^{q-1}{\cos \left( \frac{2n\pi p}{q} \right) \ln \left( 2\sin \frac{n\pi}{q} \right)}}\]</span></p>
+<p>再利用digamma函数的反射公式：</p>
+<p><span class="math display">\[\psi \left( x \right) -\psi \left( 1-x \right) =-\pi \cot \pi x\]</span></p>
+<p>故</p>
+<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) -\psi \left( \frac{q-p}{q} \right) =-\pi \cot \left( \frac{p\pi}{q} \right) }\]</span></p>
+<p>于是便证明了</p>
+<p><span class="math display">\[\boxed{\color{blue}{\displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\frac{\pi}{2}\cot \left( \frac{p\pi}{q} \right) -\ln q+\sum_{n=1}^{q-1}{\cos \left( \frac{2n\pi p}{q} \right) \ln \left( 2\sin \frac{n\pi}{q} \right)}}}}\]</span></p>
+<p>有了这个公式，便可以很快的求出一些不那么“显然的”值：</p>
+<p><span class="math display">\[\begin{aligned}\psi \left( \frac{2}{5} \right) &amp;=-\gamma -\frac{1}{2}\sqrt{1-\frac{2}{\sqrt{5}}}\pi +\frac{\sqrt{5}\mathrm{arccoth}\, \sqrt{5}}{2}-\frac{5\ln 5}{4}
+\\
+\psi \left( \frac{1}{8} \right) &amp;=-\gamma -\frac{\sqrt{2}+1}{2}\pi -\sqrt{2}\mathrm{arccoth}\, \sqrt{2}-4\ln 2
+\\
+\psi \left( \frac{1}{20} \right) &amp;=-\gamma -\frac{1+\sqrt{5}+\sqrt{5+2\sqrt{5}}}{2}\pi -3\ln 2-\frac{5\ln 5}{4}-\frac{3\sqrt{5}\ln 2}{4}
+\\
+&amp;\quad+\frac{3\sqrt{5}}{4}\ln \left( 3-\sqrt{5} \right) -\frac{\sqrt{10-2\sqrt{5}}}{2}\ln \left( \sqrt{5-2\sqrt{5}}+\sqrt{5}-1 \right) 
+\\
+&amp;\quad+\sqrt{\frac{5+\sqrt{5}}{2}}\ln \left( \sqrt{5}+1-\sqrt{5+2\sqrt{5}} \right) \end{aligned}\]</span></p>
+]]></content>
+      <categories>
+        <category>特殊函数</category>
+      </categories>
+      <tags>
+        <tag>特殊函数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>一个和傅里叶变换有关的重积分等式</title>
     <url>/2021/12/23/%E4%B8%80%E4%B8%AA%E5%92%8C%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E6%9C%89%E5%85%B3%E7%9A%84%E9%87%8D%E7%A7%AF%E5%88%86%E7%AD%89%E5%BC%8F/</url>
     <content><![CDATA[<p>本文证明下面两个积分公式：</p>
@@ -111,8 +188,8 @@
 <p>即</p>
 <p><span class="math display">\[\boxed{\displaystyle{\int_{\mathbb{R} ^n}{\frac{1}{1+\left( \sum\limits_{k=1}^n{x_{k}^{2}} \right) ^2}\prod_{k=1}^n{\frac{1}{\cosh \left( \pi x_k \right)}}\prod_{k=1}^n{\mathrm{d}x_k}}=\frac{1}{n-2}\left[ \frac{n\Gamma \left( \frac{n}{2} \right) \Gamma \left( \frac{1}{2} \right)}{\Gamma \left( \frac{n+1}{2} \right)}-4 \right] }}\]</span></p>
 <ul>
-<li><p>取$f_k( x ) =( 1-x^2 ) ^{v -}H( 1-| x | ) ,g( x ) =( 1-x^2 ) ^{u -}H( 1-| x | ) $，那么</p>
-<p>$<em>k( <em>k ) =2^{-}( + ) </em>{k}^{-}</em>{}( _k ) $，运用公式1，于是</p></li>
+<li><p>取<span class="math inline">\(\displaystyle{f_k\left( x \right) =\left( 1-x^2 \right) ^{\nu -\frac{1}{2}}H\left( 1-\left| x \right| \right) ,g\left( x \right) =\left( 1-x^2 \right) ^{\mu -\frac{1}{2}}H\left( 1-\left| x \right| \right) }\)</span>，那么</p>
+<p><span class="math inline">\(\displaystyle{\hat{f}_k\left( \omega _k \right) =2^{\nu -\frac{1}{2}}\Gamma \left( \nu +\frac{1}{2} \right) \omega _{k}^{-\nu}\mathrm{J}_{\nu}\left( \omega _k \right) }\)</span>，运用公式1，于是</p></li>
 </ul>
 <p><span class="math display">\[\boxed{\displaystyle{\int_{\mathbb{R} ^n}{\left( \sum_{k=1}^n{x_k} \right) ^{-\mu}\mathrm{J}_{\mu}\left( \sum_{k=1}^n{x_k} \right) \prod_{k=1}^n{x_{k}^{-\nu}\mathrm{J}_{\nu}\left( x_k \right)}\prod_{k=1}^n{\mathrm{d}x_k}}=\frac{\left( \sqrt{2\pi} \right) ^{n-1}\mathrm{B}\left( \frac{1}{2},n\nu -\frac{n}{2}+\mu +\frac{1}{2} \right)}{2^{n\nu -\frac{n}{2}+\mu -\frac{1}{2}}\Gamma ^n\left( \nu +\frac{1}{2} \right) \Gamma \left( \mu +\frac{1}{2} \right)}}}\]</span></p>
 <p>取一些特例，就有</p>
@@ -207,83 +284,6 @@
       </categories>
       <tags>
         <tag>级数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Gauss&#39;s digamma定理的证明</title>
-    <url>/2021/12/22/Gauss%20digamma%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/</url>
-    <content><![CDATA[<p>作为博客的第一篇文章，今天证明digamma函数的一个公式：</p>
-<p><span class="math display">\[ \displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\frac{\pi}{2}\cot \frac{p\pi}{q}-\ln q+\sum_{n=1}^{q-1}{\cos \frac{2np\pi}{q}\ln \left( 2\sin \frac{n\pi}{q} \right)}} \]</span></p>
-<p>其中<span class="math inline">\(p,q\in\mathbb{N},0&lt;p&lt;q\)</span>.这个公式表明对于任意的在0,1之间的有理数，digamma函数都是有封闭表达的。事实上，这个公式的证明并不是很困难。</p>
-<span id="more"></span>
-<h3 id="证明">证明</h3>
-<p>利用digamma函数的级数表达式：</p>
-<p><span class="math display">\[\displaystyle{\psi \left( z \right) =-\gamma +\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{1}{z+n} \right)}}\]</span></p>
-<p>再利用Abel极限定理，那么</p>
-<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) +\gamma =\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right)}=\lim_{t\rightarrow 1^-} \sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}}\]</span></p>
-<p>继续化简，得</p>
-<p><span class="math display">\[\begin{aligned}
-&amp;\quad\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}
-\\&amp;=t^{p-q}\sum_{n=0}^{\infty}{\frac{t^{\left( n+1 \right) q}}{n+1}}-\sum_{n=0}^{\infty}{\frac{qt^{p+nq}}{p+nq}}
-\\
-&amp;=-t^{p-q}\ln \left( 1-t^q \right) -\sum_{n=0}^{\infty}{\frac{qt^{p+nq}}{p+nq}}
-\end{aligned}\]</span></p>
-<p>对于第二个级数，需要用到Series multisection：如果函数<span class="math inline">\(f(z)\)</span>可以展开为级数：</p>
-<p><span class="math display">\[\displaystyle{f\left( z \right) =\sum_{n=0}^{\infty}{a_nz^n}}\]</span></p>
-<p>那么有求和公式：</p>
-<p><span class="math display">\[\boxed{\displaystyle{\sum_{m=0}^{\infty}{a_{p+qm}z^{p+qm}}=\frac{1}{q}\sum_{k=0}^{q-1}{\omega ^{-kp}f\left( \omega ^kz \right)}}}\]</span></p>
-<p>其中<span class="math inline">\(\omega =e^{\frac{2\pi \mathrm{i}}{q}}\)</span>.</p>
-<p>于是</p>
-<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{\frac{qt^{p+nq}}{p+nq}}=-\sum_{k=0}^{q-1}{\omega ^{-kp}\ln \left( 1-\omega ^kt \right)}}\]</span></p>
-<p>所以</p>
-<p><span class="math display">\[\begin{aligned}&amp;\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}
-\\
-=&amp;-t^{p-q}\ln \left( 1-t^q \right) +\sum_{n=0}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^nt \right)}
-\\
-=&amp;-t^{p-q}\ln \frac{1-t^q}{1-t}-\left( t^{p-q}-1 \right) \ln \left( 1-t \right) +\sum_{n=1}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^nt \right)}
-\end{aligned}\]</span></p>
-<p>令<span class="math inline">\(t\rightarrow 1^{-}\)</span>,那么</p>
-<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\ln q+\sum_{n=1}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^n \right)}}\]</span></p>
-<p>再用<span class="math inline">\(q-p\)</span>替代<span class="math inline">\(p\)</span>,得</p>
-<p><span class="math display">\[\displaystyle{\psi \left( \frac{q-p}{q} \right) =-\gamma -\ln q+\sum_{n=1}^{q-1}{\omega ^{-n\left( q-p \right)}\ln \left( 1-\omega ^n \right)}}\]</span></p>
-<p>两式相加，得</p>
-<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) +\psi \left( \frac{q-p}{q} \right) =-2\gamma-2\ln q+2\sum_{n=1}^{q-1}{\cos \left( \frac{2n\pi p}{q} \right) \ln \left( 1-\omega ^n \right)}}\]</span></p>
-<p>右式的实部为：</p>
-<p><span class="math display">\[\begin{aligned}\mathfrak{R} \left[ \ln \left( 1-\omega ^n \right) \right] &amp;=\frac{1}{2}\ln \left| 1-\omega ^n \right|
-\\
-&amp;=\frac{1}{2}\ln \left| 1-\cos \frac{2n\pi}{q}+\mathrm{i}\sin \frac{2n\pi}{q} \right|
-\\
-&amp;=\frac{1}{2}\ln \left[ \left( 1-\cos \frac{2n\pi}{q} \right) ^2+\sin ^2\frac{2n\pi}{q} \right] 
-\\
-&amp;=\frac{1}{2}\ln \left( 2-2\cos \frac{2n\pi}{q} \right) 
-\\
-&amp;=\frac{1}{2}\ln \left( 4\sin ^2\frac{n\pi}{q} \right) 
-\\
-&amp;=\ln \left( 2\sin \frac{n\pi}{q} \right) \end{aligned}\]</span></p>
-<p>即</p>
-<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) +\psi \left( \frac{q-p}{q} \right) =-2\gamma-2\ln q+2\sum_{n=1}^{q-1}{\cos \left( \frac{2n\pi p}{q} \right) \ln \left( 2\sin \frac{n\pi}{q} \right)}}\]</span></p>
-<p>再利用digamma函数的反射公式：</p>
-<p><span class="math display">\[\psi \left( x \right) -\psi \left( 1-x \right) =-\pi \cot \pi x\]</span></p>
-<p>故</p>
-<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) -\psi \left( \frac{q-p}{q} \right) =-\pi \cot \left( \frac{p\pi}{q} \right) }\]</span></p>
-<p>于是便证明了</p>
-<p><span class="math display">\[\boxed{\color{blue}{\displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\frac{\pi}{2}\cot \left( \frac{p\pi}{q} \right) -\ln q+\sum_{n=1}^{q-1}{\cos \left( \frac{2n\pi p}{q} \right) \ln \left( 2\sin \frac{n\pi}{q} \right)}}}}\]</span></p>
-<p>有了这个公式，便可以很快的求出一些不那么“显然的”值：</p>
-<p><span class="math display">\[\begin{aligned}\psi \left( \frac{2}{5} \right) &amp;=-\gamma -\frac{1}{2}\sqrt{1-\frac{2}{\sqrt{5}}}\pi +\frac{\sqrt{5}\mathrm{arccoth}\, \sqrt{5}}{2}-\frac{5\ln 5}{4}
-\\
-\psi \left( \frac{1}{8} \right) &amp;=-\gamma -\frac{\sqrt{2}+1}{2}\pi -\sqrt{2}\mathrm{arccoth}\, \sqrt{2}-4\ln 2
-\\
-\psi \left( \frac{1}{20} \right) &amp;=-\gamma -\frac{1+\sqrt{5}+\sqrt{5+2\sqrt{5}}}{2}\pi -3\ln 2-\frac{5\ln 5}{4}-\frac{3\sqrt{5}\ln 2}{4}
-\\
-&amp;\quad+\frac{3\sqrt{5}}{4}\ln \left( 3-\sqrt{5} \right) -\frac{\sqrt{10-2\sqrt{5}}}{2}\ln \left( \sqrt{5-2\sqrt{5}}+\sqrt{5}-1 \right) 
-\\
-&amp;\quad+\sqrt{\frac{5+\sqrt{5}}{2}}\ln \left( \sqrt{5}+1-\sqrt{5+2\sqrt{5}} \right) \end{aligned}\]</span></p>
-]]></content>
-      <categories>
-        <category>特殊函数</category>
-      </categories>
-      <tags>
-        <tag>特殊函数</tag>
       </tags>
   </entry>
 </search>
