@@ -111,9 +111,13 @@
 <p>即</p>
 <p><span class="math display">\[\boxed{\displaystyle{\int_{\mathbb{R} ^n}{\frac{1}{1+\left( \sum\limits_{k=1}^n{x_{k}^{2}} \right) ^2}\prod_{k=1}^n{\frac{1}{\cosh \left( \pi x_k \right)}}\prod_{k=1}^n{\mathrm{d}x_k}}=\frac{1}{n-2}\left[ \frac{n\Gamma \left( \frac{n}{2} \right) \Gamma \left( \frac{1}{2} \right)}{\Gamma \left( \frac{n+1}{2} \right)}-4 \right] }}\]</span></p>
 <ul>
-<li><p>取<span class="math inline">\(\displaystyle{f_k\left( x \right) =\left( 1-x^2 \right) ^{\nu -\frac{1}{2}}H\left( 1-\left| x \right| \right)}\)</span>,$ $，那么</p>
-<p><span class="math inline">\(\displaystyle{\hat{f}_k\left( \omega _k \right) =2^{\nu -\frac{1}{2}}\Gamma \left( \nu +\frac{1}{2} \right) \omega _{k}^{-\nu}\mathrm{J}_{\nu}\left( \omega _k \right) }\)</span>，运用公式1，于是</p></li>
+<li>取</li>
 </ul>
+<p><span class="math display">\[\begin{aligned}&amp;f_k\left( x \right) =\left( 1-x^2 \right) ^{\nu -\frac{1}{2}}H\left( 1-\left| x \right| \right) 
+\\
+&amp;g\left( x \right) =\left( 1-x^2 \right) ^{\mu -\frac{1}{2}}H\left( 1-\left| x \right| \right) \end{aligned}\]</span></p>
+<p>那么</p>
+<p><span class="math inline">\(\displaystyle{\hat{f}_k\left( \omega _k \right) =2^{\nu -\frac{1}{2}}\Gamma \left( \nu +\frac{1}{2} \right) \omega _{k}^{-\nu}\mathrm{J}_{\nu}\left( \omega _k \right) }\)</span>，运用公式1，于是</p>
 <p><span class="math display">\[\boxed{\displaystyle{\int_{\mathbb{R} ^n}{\left( \sum_{k=1}^n{x_k} \right) ^{-\mu}\mathrm{J}_{\mu}\left( \sum_{k=1}^n{x_k} \right) \prod_{k=1}^n{x_{k}^{-\nu}\mathrm{J}_{\nu}\left( x_k \right)}\prod_{k=1}^n{\mathrm{d}x_k}}=\frac{\left( \sqrt{2\pi} \right) ^{n-1}\mathrm{B}\left( \frac{1}{2},n\nu -\frac{n}{2}+\mu +\frac{1}{2} \right)}{2^{n\nu -\frac{n}{2}+\mu -\frac{1}{2}}\Gamma ^n\left( \nu +\frac{1}{2} \right) \Gamma \left( \mu +\frac{1}{2} \right)}}}\]</span></p>
 <p>取一些特例，就有</p>
 <p><span class="math display">\[\begin{aligned}&amp;\int_0^{\infty}{\int_0^{\infty}{\int_0^{\infty}{\int_0^{\infty}{\frac{\sin x}{x}\frac{\sin y}{y}\frac{\sin z}{z}\frac{\sin w}{w}\frac{\sin \left( x+y+z+w \right)}{x+y+z+w}}}}}\mathrm{d}x\mathrm{d}y\mathrm{d}z\mathrm{d}w=-\frac{\pi ^4}{30}
