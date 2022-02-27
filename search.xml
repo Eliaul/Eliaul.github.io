@@ -1,6 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Gauss&#39;s digamma定理的证明</title>
+    <url>/2021/12/22/Gauss%20digamma%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/</url>
+    <content><![CDATA[<p>作为博客的第一篇文章，今天证明digamma函数的一个公式：</p>
+<p><span class="math display">\[ \displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\frac{\pi}{2}\cot \frac{p\pi}{q}-\ln q+\sum_{n=1}^{q-1}{\cos \frac{2np\pi}{q}\ln \left( 2\sin \frac{n\pi}{q} \right)}} \]</span></p>
+<p>其中<span class="math inline">\(p,q\in\mathbb{N},0&lt;p&lt;q\)</span>.这个公式表明对于任意的在0,1之间的有理数，digamma函数都是有封闭表达的。事实上，这个公式的证明并不是很困难。</p>
+<span id="more"></span>
+<h3 id="证明">证明</h3>
+<p>利用digamma函数的级数表达式：</p>
+<p><span class="math display">\[\displaystyle{\psi \left( z \right) =-\gamma +\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{1}{z+n} \right)}}\]</span></p>
+<p>再利用Abel极限定理，那么</p>
+<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) +\gamma =\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right)}=\lim_{t\rightarrow 1^-} \sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}}\]</span></p>
+<p>继续化简，得</p>
+<p><span class="math display">\[\begin{aligned}
+&amp;\quad\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}
+\\&amp;=t^{p-q}\sum_{n=0}^{\infty}{\frac{t^{\left( n+1 \right) q}}{n+1}}-\sum_{n=0}^{\infty}{\frac{qt^{p+nq}}{p+nq}}
+\\
+&amp;=-t^{p-q}\ln \left( 1-t^q \right) -\sum_{n=0}^{\infty}{\frac{qt^{p+nq}}{p+nq}}
+\end{aligned}\]</span></p>
+<p>对于第二个级数，需要用到Series multisection：如果函数<span class="math inline">\(f(z)\)</span>可以展开为级数：</p>
+<p><span class="math display">\[\displaystyle{f\left( z \right) =\sum_{n=0}^{\infty}{a_nz^n}}\]</span></p>
+<p>那么有求和公式：</p>
+<p><span class="math display">\[\boxed{\displaystyle{\sum_{m=0}^{\infty}{a_{p+qm}z^{p+qm}}=\frac{1}{q}\sum_{k=0}^{q-1}{\omega ^{-kp}f\left( \omega ^kz \right)}}}\]</span></p>
+<p>其中<span class="math inline">\(\omega =e^{\frac{2\pi \mathrm{i}}{q}}\)</span>.</p>
+<p>于是</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{\frac{qt^{p+nq}}{p+nq}}=-\sum_{k=0}^{q-1}{\omega ^{-kp}\ln \left( 1-\omega ^kt \right)}}\]</span></p>
+<p>所以</p>
+<p><span class="math display">\[\begin{aligned}&amp;\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}
+\\
+=&amp;-t^{p-q}\ln \left( 1-t^q \right) +\sum_{n=0}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^nt \right)}
+\\
+=&amp;-t^{p-q}\ln \frac{1-t^q}{1-t}-\left( t^{p-q}-1 \right) \ln \left( 1-t \right) +\sum_{n=1}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^nt \right)}
+\end{aligned}\]</span></p>
+<p>令<span class="math inline">\(t\rightarrow 1^{-}\)</span>,那么</p>
+<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\ln q+\sum_{n=1}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^n \right)}}\]</span></p>
+<p>再用<span class="math inline">\(q-p\)</span>替代<span class="math inline">\(p\)</span>,得</p>
+<p><span class="math display">\[\displaystyle{\psi \left( \frac{q-p}{q} \right) =-\gamma -\ln q+\sum_{n=1}^{q-1}{\omega ^{-n\left( q-p \right)}\ln \left( 1-\omega ^n \right)}}\]</span></p>
+<p>两式相加，得</p>
+<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) +\psi \left( \frac{q-p}{q} \right) =-2\gamma-2\ln q+2\sum_{n=1}^{q-1}{\cos \left( \frac{2n\pi p}{q} \right) \ln \left( 1-\omega ^n \right)}}\]</span></p>
+<p>右式的实部为：</p>
+<p><span class="math display">\[\begin{aligned}\mathfrak{R} \left[ \ln \left( 1-\omega ^n \right) \right] &amp;=\frac{1}{2}\ln \left| 1-\omega ^n \right|
+\\
+&amp;=\frac{1}{2}\ln \left| 1-\cos \frac{2n\pi}{q}+\mathrm{i}\sin \frac{2n\pi}{q} \right|
+\\
+&amp;=\frac{1}{2}\ln \left[ \left( 1-\cos \frac{2n\pi}{q} \right) ^2+\sin ^2\frac{2n\pi}{q} \right] 
+\\
+&amp;=\frac{1}{2}\ln \left( 2-2\cos \frac{2n\pi}{q} \right) 
+\\
+&amp;=\frac{1}{2}\ln \left( 4\sin ^2\frac{n\pi}{q} \right) 
+\\
+&amp;=\ln \left( 2\sin \frac{n\pi}{q} \right) \end{aligned}\]</span></p>
+<p>即</p>
+<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) +\psi \left( \frac{q-p}{q} \right) =-2\gamma-2\ln q+2\sum_{n=1}^{q-1}{\cos \left( \frac{2n\pi p}{q} \right) \ln \left( 2\sin \frac{n\pi}{q} \right)}}\]</span></p>
+<p>再利用digamma函数的反射公式：</p>
+<p><span class="math display">\[\psi \left( x \right) -\psi \left( 1-x \right) =-\pi \cot \pi x\]</span></p>
+<p>故</p>
+<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) -\psi \left( \frac{q-p}{q} \right) =-\pi \cot \left( \frac{p\pi}{q} \right) }\]</span></p>
+<p>于是便证明了</p>
+<p><span class="math display">\[\boxed{\color{blue}{\displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\frac{\pi}{2}\cot \left( \frac{p\pi}{q} \right) -\ln q+\sum_{n=1}^{q-1}{\cos \left( \frac{2n\pi p}{q} \right) \ln \left( 2\sin \frac{n\pi}{q} \right)}}}}\]</span></p>
+<p>有了这个公式，便可以很快的求出一些不那么“显然的”值：</p>
+<p><span class="math display">\[\begin{aligned}\psi \left( \frac{2}{5} \right) &amp;=-\gamma -\frac{1}{2}\sqrt{1-\frac{2}{\sqrt{5}}}\pi +\frac{\sqrt{5}\mathrm{arccoth}\, \sqrt{5}}{2}-\frac{5\ln 5}{4}
+\\
+\psi \left( \frac{1}{8} \right) &amp;=-\gamma -\frac{\sqrt{2}+1}{2}\pi -\sqrt{2}\mathrm{arccoth}\, \sqrt{2}-4\ln 2
+\\
+\psi \left( \frac{1}{20} \right) &amp;=-\gamma -\frac{1+\sqrt{5}+\sqrt{5+2\sqrt{5}}}{2}\pi -3\ln 2-\frac{5\ln 5}{4}-\frac{3\sqrt{5}\ln 2}{4}
+\\
+&amp;\quad+\frac{3\sqrt{5}}{4}\ln \left( 3-\sqrt{5} \right) -\frac{\sqrt{10-2\sqrt{5}}}{2}\ln \left( \sqrt{5-2\sqrt{5}}+\sqrt{5}-1 \right) 
+\\
+&amp;\quad+\sqrt{\frac{5+\sqrt{5}}{2}}\ln \left( \sqrt{5}+1-\sqrt{5+2\sqrt{5}} \right) \end{aligned}\]</span></p>
+]]></content>
+      <categories>
+        <category>特殊函数</category>
+      </categories>
+      <tags>
+        <tag>特殊函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Series multisection公式</title>
+    <url>/2021/12/23/Series%20multisection%E5%85%AC%E5%BC%8F/</url>
+    <content><![CDATA[<p>昨天的博客中使用了Series multisection公式，即：</p>
+<p>如果</p>
+<p><span class="math display">\[\displaystyle{f\left( x \right) =\sum_{n=0}^{\infty}{a_nx^n}}\]</span></p>
+<p>那么</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{a_{p+nq}x^{p+nq}}=\frac{1}{q}\sum_{n=0}^{q-1}{\omega ^{-np}f\left( \omega ^nx \right)}}\]</span></p>
+<p>其中<span class="math inline">\(\omega =e^{\frac{2\pi \mathrm{i}}{q}}\)</span>.今天就来证明这个公式，并导出一些有意思的结果.</p>
+<span id="more"></span>
+<h3 id="证明">证明</h3>
+<p>首先我们考虑</p>
+<p><span class="math display">\[1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}\]</span></p>
+<p>的值，很显然，如果<span class="math inline">\(k=nq\)</span>，那么<span class="math inline">\(\omega ^k=1\)</span>，则</p>
+<p><span class="math display">\[1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}=q\]</span></p>
+<p>如果<span class="math inline">\(k\neq nq\)</span>，那么由等比数列求和公式：</p>
+<p><span class="math display">\[\displaystyle{1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}=\frac{1-\omega ^{kq}}{1-\omega ^k}}\]</span></p>
+<p>而<span class="math inline">\(\omega ^k\ne 1,\omega ^{kq}=1\)</span>，所以</p>
+<p><span class="math display">\[1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}=0\]</span></p>
+<p>综合起来，有</p>
+<p><span class="math display">\[\boxed{\displaystyle{1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}=\frac{1-\omega ^{kq}}{1-\omega ^k}=\left\{ \begin{array}{c}
+    q,\,k=nq\\
+    0,\,k\ne nq\\
+\end{array} \right. }}\]</span></p>
+<p>所以</p>
+<p><span class="math display">\[\begin{aligned}&amp;f\left( x \right) +\omega ^{-p}f\left( \omega x \right) +\omega ^{-2p}f\left( \omega ^2x \right) +\cdots +\omega ^{-\left( q-1 \right) p}f\left( \omega ^{q-1}x \right) 
+\\
+=&amp;\sum_{n=0}^{\infty}{a_n\left( 1+\omega ^{n-p}+\omega ^{2\left( n-p \right)}+\cdots +\omega ^{\left( q-1 \right) \left( n-p \right)} \right) x^n}\end{aligned}\]</span></p>
+<p>根据上面的讨论，这个级数只有在<span class="math inline">\(n-p\)</span>取<span class="math inline">\(q\)</span>的整数倍才可能不为<span class="math inline">\(0\)</span>，故</p>
+<p><span class="math display">\[\begin{aligned}&amp;f\left( x \right) +\omega ^{-p}f\left( \omega x \right) +\omega ^{-2p}f\left( \omega ^2x \right) +\cdots +\omega ^{-\left( q-1 \right) p}f\left( \omega ^{q-1}x \right) 
+\\
+=&amp;\sum_{n=0}^{\infty}{a_n\left( 1+\omega ^{n-p}+\omega ^{2\left( n-p \right)}+\cdots +\omega ^{\left( q-1 \right) \left( n-p \right)} \right) x^n}
+\\
+=&amp;q\sum_{n=0}^{\infty}{a_{p+nq}x^{p+nq}}\end{aligned}\]</span></p>
+<p>这样便证明了：</p>
+<p><span class="math display">\[\boxed{\displaystyle{\sum_{n=0}^{\infty}{a_{p+nq}x^{p+nq}}=\frac{1}{q}\sum_{n=0}^{q-1}{\omega ^{-np}f\left( \omega ^nx \right)}}}\]</span></p>
+<p>如果我们取<span class="math inline">\(f(x)=e^{x}\)</span>，那么</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{\frac{x^{pn+q}}{\left( pn+q \right) !}}=\frac{1}{q}\sum_{k=0}^{q-1}{e^{x\cos \left( \frac{2k\pi}{q} \right)}\cos \left[ x\sin \left( \frac{2k\pi}{q} \right) -\frac{2kp\pi}{q} \right]}}\]</span></p>
+<p>可以得到下面的结果：</p>
+<p><span class="math display">\[\begin{aligned}&amp;\sum_{n=0}^{\infty}{\frac{x^{3n}}{\left( 3n \right) !}}=\frac{1}{3}\left( e^x+2e^{-\frac{x}{2}}\cos \frac{\sqrt{3}x}{2} \right) 
+\\
+&amp;\sum_{n=0}^{\infty}{\frac{x^{3n+1}}{\left( 3n+1 \right) !}}=\frac{1}{3}\left( e^x-e^{-\frac{x}{2}}\cos \frac{\sqrt{3}x}{2}+\sqrt{3}e^{-\frac{x}{2}}\sin \frac{\sqrt{3}x}{2} \right) 
+\\
+&amp;\sum_{n=0}^{\infty}{\frac{x^{5n}}{\left( 5n \right) !}}=\frac{e^x}{5}+\frac{2}{5}e^{-\frac{1+\sqrt{5}}{4}x}\cos \left( \sqrt{\frac{5}{8}-\frac{\sqrt{5}}{8}}x \right) +\frac{2}{5}e^{\frac{\sqrt{5}-1}{4}x}\cos \left( \sqrt{\frac{5}{8}+\frac{\sqrt{5}}{8}}x \right) \end{aligned}\]</span></p>
+<p>如果取<span class="math inline">\(f(x)=\cos\sqrt{x}\)</span>，那么</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^{p+nq}x^{2p+2nq}}{\left( 2p+2nq \right) !}}=\frac{1}{q}\sum_{k=0}^{q-1}{\left[ \cos \left( \frac{2kp\pi}{q} \right) \cosh \left( x\sin \frac{k\pi}{q} \right) \cos \left( x\cos \frac{k\pi}{q} \right) -\sin \left( \frac{2kp\pi}{q} \right) \sinh \left( x\sin \frac{k\pi}{q} \right) \sin \left( x\cos \frac{k\pi}{q} \right) \right]}}\]</span></p>
+<p>可以得到以下结果：</p>
+<p><span class="math display">\[\begin{aligned}&amp;\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^nx^{6n}}{\left( 6n \right) !}}=\frac{\cos x}{3}+\frac{2}{3}\cos \frac{x}{2}\cosh \frac{\sqrt{3}x}{2}
+\\
+&amp;\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^nx^{2+6n}}{\left( 2+6n \right) !}}=-\frac{\cos x}{3}+\frac{1}{3}\cos \frac{x}{2}\cosh \frac{\sqrt{3}x}{2}+\frac{1}{\sqrt{3}}\sin \frac{x}{2}\sinh \frac{\sqrt{3}x}{2}
+\\
+&amp;\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^nx^{10n}}{\left( 10n \right) !}}=\frac{\cos x}{5}+\frac{2}{5}\cos \left( \frac{\sqrt{5}+1}{4}x \right) \cosh \left( \sqrt{\frac{5}{8}-\frac{\sqrt{5}}{8}}x \right) +\frac{2}{5}\cos \left( \frac{\sqrt{5}-1}{4}x \right) \cosh \left( \sqrt{\frac{5}{8}+\frac{\sqrt{5}}{8}}x \right) \end{aligned}\]</span></p>
+<p>这些结果常规做法是很难计算的。</p>
+]]></content>
+      <categories>
+        <category>数学分析</category>
+      </categories>
+      <tags>
+        <tag>级数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>一个和傅里叶变换有关的重积分等式</title>
     <url>/2021/12/23/%E4%B8%80%E4%B8%AA%E5%92%8C%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E6%9C%89%E5%85%B3%E7%9A%84%E9%87%8D%E7%A7%AF%E5%88%86%E7%AD%89%E5%BC%8F/</url>
     <content><![CDATA[<p>本文证明下面两个积分公式：</p>
@@ -154,141 +292,296 @@
       </tags>
   </entry>
   <entry>
-    <title>Series multisection公式</title>
-    <url>/2021/12/23/Series%20multisection%E5%85%AC%E5%BC%8F/</url>
-    <content><![CDATA[<p>昨天的博客中使用了Series multisection公式，即：</p>
-<p>如果</p>
-<p><span class="math display">\[\displaystyle{f\left( x \right) =\sum_{n=0}^{\infty}{a_nx^n}}\]</span></p>
-<p>那么</p>
-<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{a_{p+nq}x^{p+nq}}=\frac{1}{q}\sum_{n=0}^{q-1}{\omega ^{-np}f\left( \omega ^nx \right)}}\]</span></p>
-<p>其中<span class="math inline">\(\omega =e^{\frac{2\pi \mathrm{i}}{q}}\)</span>.今天就来证明这个公式，并导出一些有意思的结果.</p>
+    <title>一类函数的级数展开及其应用</title>
+    <url>/2022/02/24/%E4%B8%80%E7%B1%BB%E5%87%BD%E6%95%B0%E7%9A%84%E7%BA%A7%E6%95%B0%E5%B1%95%E5%BC%80%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<p>本文着重讨论以下两个函数及其相关函数的性质及其展开式，并给出一些积分和级数的例子</p>
+<p><span class="math display">\[\displaystyle{\frac{1}{\cosh x+\cos x},\frac{1}{\cosh x-\cos x}}\]</span></p>
 <span id="more"></span>
-<h3 id="证明">证明</h3>
-<p>首先我们考虑</p>
-<p><span class="math display">\[1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}\]</span></p>
-<p>的值，很显然，如果<span class="math inline">\(k=nq\)</span>，那么<span class="math inline">\(\omega ^k=1\)</span>，则</p>
-<p><span class="math display">\[1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}=q\]</span></p>
-<p>如果<span class="math inline">\(k\neq nq\)</span>，那么由等比数列求和公式：</p>
-<p><span class="math display">\[\displaystyle{1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}=\frac{1-\omega ^{kq}}{1-\omega ^k}}\]</span></p>
-<p>而<span class="math inline">\(\omega ^k\ne 1,\omega ^{kq}=1\)</span>，所以</p>
-<p><span class="math display">\[1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}=0\]</span></p>
-<p>综合起来，有</p>
-<p><span class="math display">\[\boxed{\displaystyle{1+\omega ^k+\omega ^{2k}+\cdots +\omega ^{\left( q-1 \right) k}=\frac{1-\omega ^{kq}}{1-\omega ^k}=\left\{ \begin{array}{c}
-    q,\,k=nq\\
-    0,\,k\ne nq\\
-\end{array} \right. }}\]</span></p>
+<h3 id="fleft-x-right-dfrac1cosh-xcos-x">1.<span class="math inline">\(f\left( x \right) =\dfrac{1}{\cosh x+\cos x}\)</span></h3>
+<p>由于</p>
+<p><span class="math display">\[\displaystyle{\cos x+\cosh x=\cos x+\cos \left( \mathrm{i}x \right) =2\cos \left( \frac{1+\mathrm{i}}{2}x \right) \cos \left( \frac{1-\mathrm{i}}{2}x \right) }\]</span></p>
+<p>所以其在复数域的全部零点为<span class="math inline">\(x=\dfrac{\left( 2n+1 \right) e^{\pm \pi \mathrm{i}/4}\pi}{\sqrt{2}}\)</span>,其中<span class="math inline">\(n\)</span>为所有整数。那么根据<span class="math inline">\(\cos\,(x)\)</span>的无穷乘积展开，可得到<span class="math inline">\(f(x)\)</span>的无穷乘积展开为：</p>
+<p><span class="math display">\[\begin{align*}f\left( x \right) &amp;=\frac{1}{2\prod\limits_{n=1}^{\infty}{\left( 1-\frac{2\mathrm{i}x^2}{\left( 2n-1 \right) ^2\pi ^2} \right) \left( 1+\frac{2\mathrm{i}x^2}{\left( 2n-1 \right) ^2\pi ^2} \right)}}
+\\
+&amp;=\frac{1}{2\prod\limits_{n=1}^{\infty}{\left( 1+\frac{4x^4}{\left( 2n-1 \right) ^4\pi ^4} \right)}}\\&amp;=\frac{1}{2}\prod_{n=1}^{\infty}{\frac{\left( 2n-1 \right) ^4\pi ^4}{\left( 2n-1 \right) ^4\pi ^4+4x^4}}\end{align*}\]</span></p>
+<p>取对数求导可得到<span class="math inline">\(\dfrac{\sinh x-\sin x}{\cosh x+\cos x}\)</span>的有理分式展开：</p>
+<p><span class="math display">\[\displaystyle{\frac{\sinh x-\sin x}{\cosh x+\cos x}=\sum_{n=1}^{\infty}{\frac{16x^3}{\left( 2n-1 \right) ^4\pi ^4+4x^4}}}\]</span></p>
+<p>根据Mittag-Leffler定理，<span class="math inline">\(f(x)\)</span>也可以展开成有理分式。考虑函数：</p>
+<p><span class="math display">\[\displaystyle{g\left( z \right) =\frac{\pi z}{\left( \pi ^2z^2-\frac{\mathrm{i}x^2}{2} \right) \cos \left( \pi z \right) \cosh \left( \pi z \right)}}\]</span></p>
+<p>显然其在复平面内有两个一阶极点<span class="math inline">\(z=\dfrac{\pm \left( 1+\mathrm{i} \right) x}{2\pi}\)</span>，且<span class="math inline">\(g(z)\)</span>在这两点的留数均为</p>
+<p><span class="math display">\[\displaystyle{\mathrm{Res}\left[ g\left( z \right) ,\frac{\pm \left( 1+\mathrm{i} \right) x}{2\pi} \right] =\frac{1}{\pi \left( \cosh x+\cos x \right)}}\]</span></p>
+<p>那么构造一个大圆弧围道，很容易验证<span class="math inline">\(g(z)\)</span>在围道上半径趋近于无穷大的时候的积分为0。那么：</p>
+<p><span class="math display">\[\displaystyle{\frac{2}{\pi \left( \cosh x+\cos x \right)}+\sum_{n=-\infty}^{\infty}{\mathrm{Res}\left[ g\left( z \right) ,z=\frac{2n+1}{2} \right]}+\sum_{n=-\infty}^{\infty}{\mathrm{Res}\left[ g\left( z \right) ,z=\frac{2n+1}{2} \mathrm{i} \right]}=0}\]</span></p>
+<p>也就是</p>
+<p><span class="math display">\[\begin{align*}&amp;\frac{2}{\pi \left( \cosh x+\cos x \right)}
+\\
+=&amp;-\sum_{n=-\infty}^{\infty}{\left[ \frac{\left( -1 \right) ^{n-1}}{\cosh \left( \frac{2n+1}{2}\pi \right)}\left( \frac{2\left( 2n+1 \right)}{\left( 2n+1 \right) ^2\pi ^2-2\mathrm{i}x^2}+\frac{2\left( 2n+1 \right)}{\left( 2n+1 \right) ^2\pi ^2+2\mathrm{i}x^2} \right) \right]}
+\\
+=&amp;\sum_{n=-\infty}^{\infty}{\frac{\left( -1 \right) ^n}{\cosh \left( \frac{2n+1}{2}\pi \right)}\frac{4\left( 2n+1 \right) ^3\pi ^2}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}
+\\
+=&amp;\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^n}{\cosh \left( \frac{2n+1}{2}\pi \right)}\frac{8\left( 2n+1 \right) ^3\pi ^2}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}\end{align*}\]</span></p>
+<p>即</p>
+<p><span class="math display">\[\displaystyle{\frac{1}{\cosh x+\cos x}=\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^n}{\cosh \left( \frac{2n+1}{2}\pi \right)}\frac{4\left( 2n+1 \right) ^3\pi ^3}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}}\]</span></p>
+<p>类似的，选取不同的<span class="math inline">\(g(z)\)</span>可以得到不同分式的有理分式展开：</p>
+<p>如果选取</p>
+<p><span class="math display">\[\displaystyle{g\left( z \right) =\frac{\pi \sin \left( \frac{2\pi}{1+\mathrm{i}}z \right)}{\left( \pi ^2z^2-\frac{\mathrm{i}x^2}{2} \right) \cos \left( \pi z \right) \cosh \left( \pi z \right)}}\]</span></p>
+<p>那么可以发现：</p>
+<p><span class="math display">\[\displaystyle{\mathrm{Res}\left[ g\left( z \right) ,z=\frac{\pm \left( 1+\mathrm{i} \right) x}{2\pi} \right] =\frac{\left( 1-\mathrm{i} \right) \sin x}{x\left( \cosh x+\cos x \right)}}\]</span></p>
+<p>于是：</p>
+<p><span class="math display">\[\begin{align*}&amp;\frac{2\left( 1-\mathrm{i} \right) \sin x}{x\left( \cosh x+\cos x \right)}
+\\
+=&amp;-\sum_{n=-\infty}^{\infty}{\left\{ \mathrm{Res}\left[ g\left( z \right) ,z=\frac{2n+1}{2} \right] +\mathrm{Res}\left[ g\left( z \right) ,z=\frac{2n+1}{2}\mathrm{i} \right] \right\}}
+\\
+=&amp;-\sum_{n=-\infty}^{\infty}{\left( -\frac{4}{\left( 2n+1 \right) ^2\pi ^2-2\mathrm{i}x^2}+\frac{4\mathrm{i}}{\left( 2n+1 \right) ^2\pi ^2+2\mathrm{i}x^2} \right)}
+\\
+=&amp;\left( 1-\mathrm{i} \right) \sum_{n=-\infty}^{\infty}{\frac{4\left( \left( 2n+1 \right) ^2\pi ^2-2x^2 \right)}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}\end{align*}\]</span></p>
+<p>即</p>
+<p><span class="math display">\[\displaystyle{\frac{\sin x}{\cosh x+\cos x}=\sum_{n=0}^{\infty}{\frac{4x\left( \left( 2n+1 \right) ^2\pi ^2-2x^2 \right)}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}}\]</span></p>
+<p>选取</p>
+<p><span class="math display">\[\displaystyle{g\left( z \right) =\frac{\pi z\cos \left( \frac{2\pi}{1+\mathrm{i}}z \right)}{\left( \pi ^2z^2-\frac{\mathrm{i}x^2}{2} \right) \cos \left( \pi z \right) \cosh \left( \pi z \right)}-\frac{\pi z}{\pi ^2z^2-\frac{\mathrm{i}x^2}{2}}}\]</span></p>
+<p>那么</p>
+<p><span class="math display">\[\displaystyle{\mathrm{Res}\left[ g\left( z \right) ,z=\frac{\pm \left( 1+\mathrm{i} \right) x}{2\pi} \right] =\frac{\cos x}{\pi \left( \cosh x+\cos x \right)}-\frac{1}{2\pi}}\]</span></p>
+<p>故</p>
+<p><span class="math display">\[\begin{align*}&amp;\frac{2\cos x}{\pi \left( \cosh x+\cos x \right)}-\frac{1}{\pi}
+\\
+=&amp;-\sum_{n=-\infty}^{\infty}{\left\{ \mathrm{Res}\left[ g\left( z \right) ,z=\frac{2n+1}{2} \right] +\mathrm{Res}\left[ g\left( z \right) ,z=\frac{2n+1}{2}\mathrm{i} \right] \right\}}
+\\
+=&amp;-\sum_{n=-\infty}^{\infty}{\left( -\frac{2\mathrm{i}\left( 2n+1 \right) \tanh \left( \frac{2n+1}{2}\pi \right)}{\left( 2n+1 \right) ^2\pi ^2-2\mathrm{i}x^2}+\frac{2\mathrm{i}\left( 2n+1 \right) \tanh \left( \frac{2n+1}{2}\pi \right)}{\left( 2n+1 \right) ^2\pi ^2+2\mathrm{i}x^2} \right)}
+\\
+=&amp;-\sum_{n=-\infty}^{\infty}{\frac{8\left( 2n+1 \right) x^2\tanh \left( \frac{2n+1}{2}\pi \right)}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}\end{align*}\]</span></p>
+<p>即</p>
+<p><span class="math display">\[\displaystyle{\frac{\cos x}{\cosh x+\cos x}=\frac{1}{2}-\sum_{n=0}^{\infty}{\frac{8\pi \left( 2n+1 \right) x^2\tanh \left( \frac{2n+1}{2}\pi \right)}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}}\]</span></p>
+<p>在上述式子中用<span class="math inline">\(\mathrm{i}x\)</span>替代<span class="math inline">\(x\)</span>，则</p>
+<p><span class="math display">\[\begin{align*}&amp;\frac{\sinh x}{\cosh x+\cos x}=\sum_{n=0}^{\infty}{\frac{4x\left( \left( 2n+1 \right) ^2\pi ^2+2x^2 \right)}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}
+\\
+&amp;\frac{\cosh x}{\cosh x+\cos x}=\frac{1}{2}+\sum_{n=0}^{\infty}{\frac{8\pi \left( 2n+1 \right) x^2\tanh \left( \frac{2n+1}{2}\pi \right)}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}\end{align*}\]</span></p>
+<p>注意到</p>
+<p><span class="math display">\[\begin{align*}&amp;\frac{\sin x}{\cosh x+\cos x}
+\\
+=&amp;\frac{2e^x\sin x}{e^{2x}+2e^x\cos x+1}=\frac{2e^x\sin x}{\left( e^x+\cos x \right) ^2+\sin ^2x}
+\\
+=&amp;\frac{2e^x\sin x}{\left( e^x+e^{\mathrm{i}x} \right) \left( e^x+e^{-\mathrm{i}x} \right)}=\mathrm{i}e^x\left( \frac{1}{e^x+e^{\mathrm{i}x}}-\frac{1}{e^x+e^{-\mathrm{i}x}} \right) 
+\\
+=&amp;\mathrm{i}\left( \frac{1}{1+e^{\left( \mathrm{i}-1 \right) x}}-\frac{1}{1+e^{-\left( \mathrm{i}+1 \right) x}} \right) =\mathrm{i}\sum_{n=0}^{\infty}{\left( -1 \right) ^n\left[ e^{\mathrm{i}nx-nx}-e^{-\mathrm{i}nx-nx} \right]}
+\\
+=&amp;-2\sum_{n=0}^{\infty}{\left( -1 \right) ^ne^{-nx}\sin nx}=2\sum_{n=1}^{\infty}{\left( -1 \right) ^{n-1}e^{-nx}\sin nx}\,\,(x&gt;0)\end{align*}\]</span></p>
+<p>类似的，有</p>
+<p><span class="math display">\[\displaystyle{\frac{e^x+\cos x}{\cosh x+\cos x}=2\sum_{n=0}^{\infty}{\left( -1 \right) ^ne^{-nx}\cos nx}\,\,\left( x&gt;0 \right) }\]</span></p>
+<p>于是我们得到了下列展开式：</p>
+<p><span class="math display">\[\begin{align*}&amp;\frac{1}{\cosh x+\cos x}=\frac{1}{2}\prod_{n=1}^{\infty}{\frac{\left( 2n-1 \right) ^4\pi ^4}{\left( 2n-1 \right) ^4\pi ^4+4x^4}}
+\\
+&amp;\frac{1}{\cosh x+\cos x}=\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^n}{\cosh \left( \frac{2n+1}{2}\pi \right)}\frac{4\left( 2n+1 \right) ^3\pi ^3}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}
+\\
+&amp;\frac{\sin x}{\cosh x+\cos x}=\sum_{n=0}^{\infty}{\frac{4x\left( \left( 2n+1 \right) ^2\pi ^2-2x^2 \right)}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}
+\\
+&amp;\frac{\cos x}{\cosh x+\cos x}=\frac{1}{2}-\sum_{n=0}^{\infty}{\frac{8\pi \left( 2n+1 \right) x^2\tanh \left( \frac{2n+1}{2}\pi \right)}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}
+\\
+&amp;\frac{\sinh x}{\cosh x+\cos x}=\sum_{n=0}^{\infty}{\frac{4x\left( \left( 2n+1 \right) ^2\pi ^2+2x^2 \right)}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}
+\\
+&amp;\frac{\cosh x}{\cosh x+\cos x}=\frac{1}{2}+\sum_{n=0}^{\infty}{\frac{8\pi \left( 2n+1 \right) x^2\tanh \left( \frac{2n+1}{2}\pi \right)}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}
+\\
+&amp;\frac{\sin x}{\cosh x+\cos x}=2\sum_{n=1}^{\infty}{\left( -1 \right) ^{n-1}e^{-nx}\sin nx}\,\,\left( x&gt;0 \right) 
+\\
+&amp;\frac{e^x+\cos x}{\cosh x+\cos x}=2\sum_{n=0}^{\infty}{\left( -1 \right) ^ne^{-nx}\cos nx}\,\,\left( x&gt;0 \right) \end{align*}\]</span></p>
+<h3 id="fleft-x-right-dfrac1cosh-x-cos-x">2.<span class="math inline">\(f\left( x \right) =\dfrac{1}{\cosh x-\cos x}\)</span></h3>
+<p>由于</p>
+<p>$x-x=( x ) -x=2( x ) ( x ) $</p>
+<p>那么根据<span class="math inline">\(\sin\,(x)\)</span>的无穷乘积，可得到</p>
+<p><span class="math display">\[\displaystyle{\frac{1}{\cosh x-\cos x}=\frac{1}{x^2}\prod_{n=1}^{\infty}{\frac{4n^4\pi ^4}{4n^4\pi ^4+x^4}}}\]</span></p>
+<p>取对数求导可得</p>
+<p><span class="math display">\[\displaystyle{\frac{\sinh x+\sin x}{\cosh x-\cos x}=\sum_{n=1}^{\infty}{\frac{4x^3}{4n^4\pi ^4+x^4}}+\frac{2}{x}}\]</span></p>
+<p>考虑</p>
+<p><span class="math display">\[\displaystyle{g\left( z \right) =\frac{\pi z}{\left( \pi ^2z^2-\frac{\mathrm{i}x^2}{2} \right) \sin \left( \pi z \right) \sinh \left( \pi z \right)}}\]</span></p>
+<p>那么</p>
+<p><span class="math display">\[\displaystyle{\mathrm{Res}\left[ g\left( z \right) ,\frac{\pm \left( 1+\mathrm{i} \right) x}{2\pi} \right] =-\frac{\mathrm{i}}{\pi \left( \cosh x-\cos x \right)}}\]</span></p>
 <p>所以</p>
-<p><span class="math display">\[\begin{aligned}&amp;f\left( x \right) +\omega ^{-p}f\left( \omega x \right) +\omega ^{-2p}f\left( \omega ^2x \right) +\cdots +\omega ^{-\left( q-1 \right) p}f\left( \omega ^{q-1}x \right) 
+<p><span class="math display">\[\begin{align*}&amp;-\frac{2\mathrm{i}}{\pi \left( \cosh x-\cos x \right)}
 \\
-=&amp;\sum_{n=0}^{\infty}{a_n\left( 1+\omega ^{n-p}+\omega ^{2\left( n-p \right)}+\cdots +\omega ^{\left( q-1 \right) \left( n-p \right)} \right) x^n}\end{aligned}\]</span></p>
-<p>根据上面的讨论，这个级数只有在<span class="math inline">\(n-p\)</span>取<span class="math inline">\(q\)</span>的整数倍才可能不为<span class="math inline">\(0\)</span>，故</p>
-<p><span class="math display">\[\begin{aligned}&amp;f\left( x \right) +\omega ^{-p}f\left( \omega x \right) +\omega ^{-2p}f\left( \omega ^2x \right) +\cdots +\omega ^{-\left( q-1 \right) p}f\left( \omega ^{q-1}x \right) 
+=&amp;-\sum_{n\in \mathbb{Z} \backslash\left\{ 0 \right\}}{\left[ \frac{\left( -1 \right) ^n2n}{\sinh \left( n\pi \right)}\frac{1}{2n^2\pi ^2-\mathrm{i}x^2}-\frac{\left( -1 \right) ^n2n}{\sinh \left( n\pi \right)}\frac{1}{2n^2\pi ^2+\mathrm{i}x^2} \right]}-\frac{2\mathrm{i}}{\pi x^2}
 \\
-=&amp;\sum_{n=0}^{\infty}{a_n\left( 1+\omega ^{n-p}+\omega ^{2\left( n-p \right)}+\cdots +\omega ^{\left( q-1 \right) \left( n-p \right)} \right) x^n}
+=&amp;-\sum_{n\in \mathbb{Z} \backslash\left\{ 0 \right\}}{\frac{\left( -1 \right) ^n2n}{\sinh \left( n\pi \right)}\frac{2\mathrm{i}x^2}{4n^4\pi ^4+x^4}}-\frac{2\mathrm{i}}{\pi x^2}\end{align*}\]</span></p>
+<p>即</p>
+<p><span class="math display">\[\displaystyle{\frac{1}{\cosh x-\cos x}=\frac{1}{x^2}+\sum_{n=1}^{\infty}{\frac{\left( -1 \right) ^n4n}{\sinh \left( n\pi \right)}\frac{\pi x^2}{4n^4\pi ^4+x^4}}}\]</span></p>
+<p>考虑</p>
+<p><span class="math display">\[\displaystyle{g\left( z \right) =\frac{\pi \sin \left( \frac{2\pi}{1+\mathrm{i}}z \right)}{\left( \pi ^2z^2-\frac{\mathrm{i}x^2}{2} \right) \sin \left( \pi z \right) \sinh \left( \pi z \right)}}\]</span></p>
+<p>则</p>
+<p><span class="math display">\[\displaystyle{\mathrm{Res}\left[ g\left( z \right) ,\frac{\pm \left( 1+\mathrm{i} \right) x}{2\pi} \right] =\frac{-\left( 1+\mathrm{i} \right) \sin x}{x\left( \cosh x-\cos x \right)}}\]</span></p>
+<p>故</p>
+<p><span class="math display">\[\begin{align*}&amp;\frac{-2\left( 1+\mathrm{i} \right) \sin x}{x\left( \cosh x-\cos x \right)}
 \\
-=&amp;q\sum_{n=0}^{\infty}{a_{p+nq}x^{p+nq}}\end{aligned}\]</span></p>
-<p>这样便证明了：</p>
-<p><span class="math display">\[\boxed{\displaystyle{\sum_{n=0}^{\infty}{a_{p+nq}x^{p+nq}}=\frac{1}{q}\sum_{n=0}^{q-1}{\omega ^{-np}f\left( \omega ^nx \right)}}}\]</span></p>
-<p>如果我们取<span class="math inline">\(f(x)=e^{x}\)</span>，那么</p>
-<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{\frac{x^{pn+q}}{\left( pn+q \right) !}}=\frac{1}{q}\sum_{k=0}^{q-1}{e^{x\cos \left( \frac{2k\pi}{q} \right)}\cos \left[ x\sin \left( \frac{2k\pi}{q} \right) -\frac{2kp\pi}{q} \right]}}\]</span></p>
-<p>可以得到下面的结果：</p>
-<p><span class="math display">\[\begin{aligned}&amp;\sum_{n=0}^{\infty}{\frac{x^{3n}}{\left( 3n \right) !}}=\frac{1}{3}\left( e^x+2e^{-\frac{x}{2}}\cos \frac{\sqrt{3}x}{2} \right) 
+=&amp;-\sum_{n\in \mathbb{Z} \backslash \left\{ 0 \right\}}{\left[ -\frac{2\mathrm{i}}{2n^2\pi ^2-\mathrm{i}x^2}-\frac{2}{2n^2\pi ^2+\mathrm{i}x^2} \right]}-\frac{2\left( 1+\mathrm{i} \right)}{x^2}
 \\
-&amp;\sum_{n=0}^{\infty}{\frac{x^{3n+1}}{\left( 3n+1 \right) !}}=\frac{1}{3}\left( e^x-e^{-\frac{x}{2}}\cos \frac{\sqrt{3}x}{2}+\sqrt{3}e^{-\frac{x}{2}}\sin \frac{\sqrt{3}x}{2} \right) 
+=&amp;\left( 1+\mathrm{i} \right) \sum_{n\in \mathbb{Z} \backslash \left\{ 0 \right\}}{\frac{4n^2\pi ^2-2x^2}{4n^4\pi ^4+x^4}}-\frac{2\left( 1+\mathrm{i} \right)}{x^2}\end{align*}\]</span></p>
+<p>即</p>
+<p><span class="math display">\[\displaystyle{\frac{\sin x}{\cosh x-\cos x}=\frac{1}{x}-\sum_{n=1}^{\infty}{\frac{4n^2\pi ^2x-2x^3}{4n^4\pi ^4+x^4}}}\]</span></p>
+<p>考虑</p>
+<p><span class="math display">\[\displaystyle{g\left( z \right) =\frac{\pi z\cos \left( \frac{2\pi}{1+\mathrm{i}}x \right)}{\left( \pi ^2z^2-\frac{\mathrm{i}x^2}{2} \right) \sin \left( \pi z \right) \sinh \left( \pi z \right)}-\frac{\pi z}{\pi ^2z^2-\frac{\mathrm{i}x^2}{2}}}\]</span></p>
+<p>那么</p>
+<p><span class="math display">\[\displaystyle{\mathrm{Res}\left[ g\left( z \right) ,\frac{\pm \left( 1+\mathrm{i} \right) x}{2\pi} \right] =-\frac{\mathrm{i}\cos x}{\pi \left( \cosh x-\cos x \right)}-\frac{1}{2\pi}}\]</span></p>
+<p>于是</p>
+<p><span class="math display">\[\begin{align*}&amp;\frac{-2\mathrm{i}\cos x}{\pi \left( \cosh x-\cos x \right)}-\frac{1}{\pi}
 \\
-&amp;\sum_{n=0}^{\infty}{\frac{x^{5n}}{\left( 5n \right) !}}=\frac{e^x}{5}+\frac{2}{5}e^{-\frac{1+\sqrt{5}}{4}x}\cos \left( \sqrt{\frac{5}{8}-\frac{\sqrt{5}}{8}}x \right) +\frac{2}{5}e^{\frac{\sqrt{5}-1}{4}x}\cos \left( \sqrt{\frac{5}{8}+\frac{\sqrt{5}}{8}}x \right) \end{aligned}\]</span></p>
-<p>如果取<span class="math inline">\(f(x)=\cos\sqrt{x}\)</span>，那么</p>
-<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^{p+nq}x^{2p+2nq}}{\left( 2p+2nq \right) !}}=\frac{1}{q}\sum_{k=0}^{q-1}{\left[ \cos \left( \frac{2kp\pi}{q} \right) \cosh \left( x\sin \frac{k\pi}{q} \right) \cos \left( x\cos \frac{k\pi}{q} \right) -\sin \left( \frac{2kp\pi}{q} \right) \sinh \left( x\sin \frac{k\pi}{q} \right) \sin \left( x\cos \frac{k\pi}{q} \right) \right]}}\]</span></p>
-<p>可以得到以下结果：</p>
-<p><span class="math display">\[\begin{aligned}&amp;\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^nx^{6n}}{\left( 6n \right) !}}=\frac{\cos x}{3}+\frac{2}{3}\cos \frac{x}{2}\cosh \frac{\sqrt{3}x}{2}
+=&amp;-\sum_{n\in \mathbb{Z} \backslash \left\{ 0 \right\}}{\left[ \frac{2n\coth \left( n\pi \right)}{2n^2\pi ^2-\mathrm{i}x^2}-\frac{2n\coth \left( n\pi \right)}{2n^2\pi ^2+\mathrm{i}x^2} \right]}-\frac{2\mathrm{i}}{\pi x^2}
 \\
-&amp;\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^nx^{2+6n}}{\left( 2+6n \right) !}}=-\frac{\cos x}{3}+\frac{1}{3}\cos \frac{x}{2}\cosh \frac{\sqrt{3}x}{2}+\frac{1}{\sqrt{3}}\sin \frac{x}{2}\sinh \frac{\sqrt{3}x}{2}
+=&amp;-\sum_{n\in \mathbb{Z} \backslash \left\{ 0 \right\}}{\frac{4\mathrm{i}nx^2\coth \left( n\pi \right)}{4n^4\pi ^4+x^4}}-\frac{2\mathrm{i}}{\pi x^2}\end{align*}\]</span></p>
+<p>即</p>
+<p><span class="math display">\[\displaystyle{\frac{\cos x}{\cosh x-\cos x}=-\frac{1}{2}+\frac{1}{x^2}+\sum_{n=1}^{\infty}{\frac{4n\pi x^2\coth \left( n\pi \right)}{4n^4\pi ^4+x^4}}}\]</span></p>
+<p>用<span class="math inline">\(\mathrm{i}x\)</span>替代<span class="math inline">\(x\)</span>，得</p>
+<p><span class="math display">\[\begin{align*}&amp;\frac{\sinh x}{\cosh x-\cos x}=\frac{1}{x}+\sum_{n=1}^{\infty}{\frac{4n^2\pi ^2x+2x^3}{4n^4\pi ^4+x^4}}
 \\
-&amp;\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^nx^{10n}}{\left( 10n \right) !}}=\frac{\cos x}{5}+\frac{2}{5}\cos \left( \frac{\sqrt{5}+1}{4}x \right) \cosh \left( \sqrt{\frac{5}{8}-\frac{\sqrt{5}}{8}}x \right) +\frac{2}{5}\cos \left( \frac{\sqrt{5}-1}{4}x \right) \cosh \left( \sqrt{\frac{5}{8}+\frac{\sqrt{5}}{8}}x \right) \end{aligned}\]</span></p>
-<p>这些结果常规做法是很难计算的。</p>
+&amp;\frac{\cosh x}{\cosh x-\cos x}=\frac{1}{2}+\frac{1}{x^2}+\sum_{n=1}^{\infty}{\frac{4n\pi x^2\coth \left( n\pi \right)}{4n^4\pi ^4+x^4}}\end{align*}\]</span></p>
+<p>注意到</p>
+<p><span class="math display">\[\begin{align*}&amp;\frac{\sin x}{\cosh x-\cos x}
+\\
+=&amp;\frac{2e^x\sin x}{e^{2x}-2e^x\cos x+1}=\frac{2e^x\sin x}{\left( e^x-\cos x \right) ^2+\sin ^2x}
+\\
+=&amp;\frac{2e^x\sin x}{\left( e^x-e^{\mathrm{i}x} \right) \left( e^x-e^{-\mathrm{i}x} \right)}=-\mathrm{i}e^x\left( \frac{1}{e^x-e^{\mathrm{i}x}}-\frac{1}{e^x-e^{-\mathrm{i}x}} \right) 
+\\
+=&amp;-\mathrm{i}\left( \frac{1}{1-e^{\left( \mathrm{i}-1 \right) x}}-\frac{1}{1-e^{-\left( \mathrm{i}+1 \right) x}} \right) =-\mathrm{i}\sum_{n=0}^{\infty}{\left[ e^{\mathrm{i}nx-nx}-e^{-\mathrm{i}nx-nx} \right]}
+\\
+=&amp;2\sum_{n=1}^{\infty}{e^{-nx}\sin nx}\,\,\left( x&gt;0 \right) \end{align*}\]</span></p>
+<p>类似的</p>
+<p><span class="math display">\[\displaystyle{\frac{e^x-\cos x}{\cosh x-\cos x}=2\sum_{n=0}^{\infty}{e^{-nx}\cos nx}\,\,\left( x&gt;0 \right) }\]</span></p>
+<p>于是我们得到了下列展开式：</p>
+<p><span class="math display">\[\begin{align*}&amp;\frac{1}{\cosh x-\cos x}=\frac{1}{x^2}\prod_{n=1}^{\infty}{\frac{4n^4\pi ^4}{4n^4\pi ^4+x^4}}
+\\
+&amp;\frac{1}{\cosh x-\cos x}=\frac{1}{x^2}+\sum_{n=1}^{\infty}{\frac{\left( -1 \right) ^nn}{\sinh \left( n\pi \right)}\frac{4\pi x^2}{4n^4\pi ^4+x^4}}
+\\
+&amp;\frac{\sin x}{\cosh x-\cos x}=\frac{1}{x}-\sum_{n=1}^{\infty}{\frac{4n^2\pi ^2x-2x^3}{4n^4\pi ^4+x^4}}
+\\
+&amp;\frac{\cos x}{\cosh x-\cos x}=-\frac{1}{2}+\frac{1}{x^2}+\sum_{n=1}^{\infty}{\frac{4n\pi x^2\coth \left( n\pi \right)}{4n^4\pi ^4+x^4}}
+\\
+&amp;\frac{\sinh x}{\cosh x-\cos x}=\frac{1}{x}+\sum_{n=1}^{\infty}{\frac{4n^2\pi ^2x+2x^3}{4n^4\pi ^4+x^4}}
+\\
+&amp;\frac{\cosh x}{\cosh x-\cos x}=\frac{1}{2}+\frac{1}{x^2}+\sum_{n=1}^{\infty}{\frac{4n\pi x^2\coth \left( n\pi \right)}{4n^4\pi ^4+x^4}}
+\\
+&amp;\frac{\sin x}{\cosh x-\cos x}=2\sum_{n=1}^{\infty}{e^{-nx}\sin nx}\,\,\left( x&gt;0 \right) 
+\\
+&amp;\frac{e^x-\cos x}{\cosh x-\cos x}=2\sum_{n=0}^{\infty}{e^{-nx}\cos nx}\,\,\left( x&gt;0 \right) \end{align*}\]</span></p>
+<hr />
+<p>上述展开式可以构造很多积分级数。</p>
+<p>在</p>
+<p><span class="math display">\[\displaystyle{\frac{1}{\cosh x+\cos x}=\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^n}{\cosh \left( \frac{2n+1}{2}\pi \right)}\frac{4\left( 2n+1 \right) ^3\pi ^3}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}}\]</span></p>
+<p>中令<span class="math inline">\(x=0\)</span>可得</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{\frac{\left( -1 \right) ^n}{\left( 2n+1 \right) \cosh \left( \frac{2n+1}{2}\pi \right)}}=\frac{\pi}{8}}\]</span></p>
+<p>在</p>
+<p><span class="math display">\[\displaystyle{\frac{1}{x^2}\left( \frac{\cos x}{\cosh x+\cos x}-\frac{1}{2} \right) =-\sum_{n=0}^{\infty}{\frac{8\pi \left( 2n+1 \right) \tanh \left( \frac{2n+1}{2}\pi \right)}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}}\]</span></p>
+<p>中令<span class="math inline">\(x\rightarrow 0\)</span>可得</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{\frac{\tanh \left( \frac{2n+1}{2}\pi \right)}{\left( 2n+1 \right) ^3}}=\frac{\pi ^3}{32}}\]</span></p>
+<p>在</p>
+<p><span class="math display">\[\displaystyle{\frac{\sinh x-\sin x}{\cosh x+\cos x}\frac{1}{x^3}=\sum_{n=0}^{\infty}{\frac{16}{\left( 2n+1 \right) ^4\pi ^4+4x^4}}}\]</span></p>
+<p>中取<span class="math inline">\(x=\pi\)</span>可得</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{\frac{1}{\left( 2n+1 \right) ^4+4}}=\frac{\pi \coth \left( \frac{\pi}{2} \right)}{16}}\]</span></p>
+<p>在</p>
+<p><span class="math display">\[\displaystyle{\left( \frac{1}{\cosh x-\cos x}-\frac{1}{x^2} \right) \frac{1}{x^2}=\sum_{n=1}^{\infty}{\frac{\left( -1 \right) ^n}{\sinh \left( n\pi \right)}\frac{4\pi n}{4n^4\pi ^4+x^4}}}\]</span></p>
+<p>中令<span class="math inline">\(x\rightarrow 0\)</span>可得</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=1}^{\infty}{\frac{\left( -1 \right) ^n}{n^3\sinh \left( n\pi \right)}}=-\frac{\pi ^3}{360}}\]</span></p>
+<p>在</p>
+<p><span class="math display">\[\displaystyle{\left( \frac{\cos x}{\cosh x-\cos x}+\frac{1}{2}-\frac{1}{x^2} \right) \frac{1}{x^2}=\sum_{n=1}^{\infty}{\frac{4n\pi \coth \left( n\pi \right)}{4n^4\pi ^4+x^4}}}\]</span></p>
+<p>中令<span class="math inline">\(x\rightarrow 0\)</span>可得</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=1}^{\infty}{\frac{\coth \left( n\pi \right)}{n^3}}=\frac{7\pi ^3}{180}}\]</span></p>
+<p>在</p>
+<p><span class="math display">\[\displaystyle{\left( \frac{\sinh x+\sin x}{\cosh x-\cos x}-\frac{2}{x} \right) \frac{1}{x^3}=\sum_{n=1}^{\infty}{\frac{4}{4n^4\pi ^4+x^4}}}\]</span></p>
+<p>中取<span class="math inline">\(x=\pi\)</span>可得</p>
+<p><span class="math display">\[\displaystyle{\sum_{n=1}^{\infty}{\frac{1}{4n^4+1}}=\frac{\pi}{4}\tanh \left( \frac{\pi}{2} \right) -\frac{1}{2}}\]</span></p>
+<hr />
+<p>积分部分：</p>
+<ol type="1">
+<li></li>
+</ol>
+<p><span class="math display">\[\begin{align*}&amp;\int_0^{\infty}{\frac{\sin x}{\cosh x+\cos x}}\mathrm{d}x
+\\
+=&amp;2\sum_{n=1}^{\infty}{\left( -1 \right) ^{n-1}\int_0^{\infty}{e^{-nx}\sin nx}\mathrm{d}x}
+\\
+=&amp;\sum_{n=1}^{\infty}{\frac{\left( -1 \right) ^{n-1}}{n}}=\ln 2\end{align*}\]</span></p>
+<ol start="2" type="1">
+<li></li>
+</ol>
+<p><span class="math display">\[\begin{align*}&amp;\int_0^{\infty}{\left( \frac{e^x+\cos x}{\cosh x+\cos x}-2 \right)}\mathrm{d}x
+\\
+=&amp;2\sum_{n=1}^{\infty}{\left( -1 \right) ^n\int_0^{\infty}{e^{-nx}\cos nx}\mathrm{d}x}
+\\
+=&amp;-\ln 2\end{align*}\]</span></p>
+<ol start="3" type="1">
+<li></li>
+</ol>
+<p><span class="math display">\[\begin{align*}&amp;\int_0^{\infty}{\frac{x\sin x}{\cosh x+\cos x}}\mathrm{d}x
+\\
+=&amp;2\sum_{n=1}^{\infty}{\left( -1 \right) ^{n-1}\int_0^{\infty}{xe^{-nx}\sin nx}\mathrm{d}x}
+\\
+=&amp;\sum_{n=1}^{\infty}{\frac{\left( -1 \right) ^{n-1}}{n^2}}=\frac{\pi ^2}{12}\end{align*}\]</span></p>
+<ol start="4" type="1">
+<li></li>
+</ol>
+<p><span class="math display">\[\begin{align*}&amp;\int_0^{\infty}{\frac{\sin ^2x}{\cosh x+\cos x}}\mathrm{d}x
+\\
+=&amp;2\sum_{n=1}^{\infty}{\left( -1 \right) ^{n-1}\int_0^{\infty}{e^{-nx}\sin x\sin nx}\mathrm{d}x}
+\\
+=&amp;\sum_{n=1}^{\infty}{\left( -1 \right) ^n\int_0^{\infty}{e^{-nx}\left[ \cos \left( n+1 \right) x-\cos \left( n-1 \right) x \right]}\mathrm{d}x}
+\\
+=&amp;\sum_{n=1}^{\infty}{\left( -1 \right) ^n\left( \frac{n}{2n^2+2n+1}-\frac{n}{2n^2-2n+1} \right)}
+\\
+=&amp;\sum_{n=1}^{\infty}{\frac{\left( -1 \right) ^{n-1}4n^2}{4n^4+1}}
+\\
+=&amp;\sum_{n=1}^{\infty}{\frac{4n^2}{4n^4+1}}-2\sum_{n=1}^{\infty}{\frac{16n^2}{64n^4+1}}
+\\
+=&amp;\frac{\pi}{2}\tanh \left( \frac{\pi}{2} \right) -\frac{\pi \sinh \left( \frac{\pi}{2} \right) -\pi}{2\cosh \left( \frac{\pi}{2} \right)}
+\\
+=&amp;\frac{\pi}{2\cosh \left( \frac{\pi}{2} \right)}\end{align*}\]</span></p>
+<p>其中用到了</p>
+<p><span class="math display">\[\displaystyle{\frac{\sinh x-\sin x}{\cosh x-\cos x}=\sum_{n=1}^{\infty}{\frac{8n^2\pi ^2x}{4n^4\pi ^4+x^4}}}\]</span></p>
+<ol start="5" type="1">
+<li></li>
+</ol>
+<p><span class="math display">\[\begin{align*}&amp;\int_0^{\infty}{\frac{x\sin ^4x}{\cosh x+\cos x}}\mathrm{d}x
+\\
+=&amp;2\sum_{n=1}^{\infty}{\left( -1 \right) ^{n-1}\int_0^{\infty}{xe^{-nx}\sin ^3x\sin nx}\mathrm{d}x}
+\\
+=&amp;\frac{3}{4}\sum_{n=1}^{\infty}{\left[ \frac{\left( -1 \right) ^{n-1}\left( n^2-\left( n-1 \right) ^2 \right)}{\left( n^2+\left( n-1 \right) ^2 \right) ^2}-\frac{\left( -1 \right) ^{n-1}\left( n^2-\left( n+1 \right) ^2 \right)}{\left( n^2+\left( n+1 \right) ^2 \right) ^2} \right]}
+\\
+&amp;+\frac{1}{4}\sum_{n=1}^{\infty}{\left[ \frac{\left( -1 \right) ^{n-1}\left( n^2-\left( n+3 \right) ^2 \right)}{\left( n^2+\left( n+3 \right) ^2 \right) ^2}-\frac{\left( -1 \right) ^{n-1}\left( n^2-\left( n-3 \right) ^2 \right)}{\left( n^2+\left( n-3 \right) ^2 \right) ^2} \right]}
+\\
+=&amp;\frac{3}{4}-\frac{1}{4}\sum_{n=1}^{\infty}{\left( a_n-a_{n+3} \right)}
+\\
+=&amp;\frac{3}{4}-\frac{1}{4}\left( a_1+a_2+a_3 \right) 
+\\
+=&amp;\frac{3}{4}-\frac{1}{4}\left( \frac{1-4}{5^2}-\frac{4-1}{5^2}+\frac{9}{9^2} \right) 
+\\
+=&amp;\frac{176}{225}\end{align*}\]</span></p>
+<ol start="6" type="1">
+<li></li>
+</ol>
+<p><span class="math display">\[\begin{align*}&amp;\int_0^{\infty}{\frac{\sin x\ln x}{\cosh x+\cos x}}\mathrm{d}x
+\\
+=&amp;2\sum_{n=1}^{\infty}{\left( -1 \right) ^{n-1}\int_0^{\infty}{e^{-nx}\sin nx\ln x}\mathrm{d}x}
+\\
+=&amp;2\sum_{n=1}^{\infty}{\frac{\left( -1 \right) ^{n-1}}{n}\int_0^{\infty}{e^{-x}\sin x\left( \ln x-\ln n \right)}\mathrm{d}x}
+\\
+=&amp;2\sum_{n=1}^{\infty}{\frac{\left( -1 \right) ^{n-1}}{n}\int_0^{\infty}{e^{-x}\sin x\ln x}\mathrm{d}x}-\sum_{n=1}^{\infty}{\frac{\left( -1 \right) ^{n-1}\ln n}{n}}
+\\
+=&amp;\frac{\ln 2}{4}\left( -4\gamma +\pi -2\ln 2 \right) -\frac{\ln 2}{2}\left( -2\gamma +\ln 2 \right) 
+\\
+=&amp;\frac{\pi \ln 2}{4}-\ln ^22\end{align*}\]</span></p>
+<ol start="7" type="1">
+<li></li>
+</ol>
+<p><span class="math display">\[\begin{align*}&amp;\int_0^{\infty}{\left( \frac{1}{\cosh x-\cos x}-\frac{1}{x^2} \right) \frac{\mathrm{d}x}{x}}
+\\
+=&amp;\sum_{n=1}^{\infty}{\frac{\left( -1 \right) ^n}{\sinh \left( n\pi \right)}\int_0^{\infty}{\frac{4n\pi x}{4n^4\pi ^4+x^4}}\mathrm{d}x}
+\\
+=&amp;\frac{1}{2}\sum_{n=1}^{\infty}{\frac{\left( -1 \right) ^n}{n\sinh \left( n\pi \right)}}
+\\
+=&amp;\frac{\pi}{24}-\frac{\ln 2}{4}\end{align*}\]</span></p>
+<ol start="8" type="1">
+<li></li>
+</ol>
 ]]></content>
       <categories>
-        <category>数学分析</category>
+        <category>复变函数与积分变换</category>
       </categories>
       <tags>
         <tag>级数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Gauss&#39;s digamma定理的证明</title>
-    <url>/2021/12/22/Gauss%20digamma%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/</url>
-    <content><![CDATA[<p>作为博客的第一篇文章，今天证明digamma函数的一个公式：</p>
-<p><span class="math display">\[ \displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\frac{\pi}{2}\cot \frac{p\pi}{q}-\ln q+\sum_{n=1}^{q-1}{\cos \frac{2np\pi}{q}\ln \left( 2\sin \frac{n\pi}{q} \right)}} \]</span></p>
-<p>其中<span class="math inline">\(p,q\in\mathbb{N},0&lt;p&lt;q\)</span>.这个公式表明对于任意的在0,1之间的有理数，digamma函数都是有封闭表达的。事实上，这个公式的证明并不是很困难。</p>
-<span id="more"></span>
-<h3 id="证明">证明</h3>
-<p>利用digamma函数的级数表达式：</p>
-<p><span class="math display">\[\displaystyle{\psi \left( z \right) =-\gamma +\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{1}{z+n} \right)}}\]</span></p>
-<p>再利用Abel极限定理，那么</p>
-<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) +\gamma =\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right)}=\lim_{t\rightarrow 1^-} \sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}}\]</span></p>
-<p>继续化简，得</p>
-<p><span class="math display">\[\begin{aligned}
-&amp;\quad\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}
-\\&amp;=t^{p-q}\sum_{n=0}^{\infty}{\frac{t^{\left( n+1 \right) q}}{n+1}}-\sum_{n=0}^{\infty}{\frac{qt^{p+nq}}{p+nq}}
-\\
-&amp;=-t^{p-q}\ln \left( 1-t^q \right) -\sum_{n=0}^{\infty}{\frac{qt^{p+nq}}{p+nq}}
-\end{aligned}\]</span></p>
-<p>对于第二个级数，需要用到Series multisection：如果函数<span class="math inline">\(f(z)\)</span>可以展开为级数：</p>
-<p><span class="math display">\[\displaystyle{f\left( z \right) =\sum_{n=0}^{\infty}{a_nz^n}}\]</span></p>
-<p>那么有求和公式：</p>
-<p><span class="math display">\[\boxed{\displaystyle{\sum_{m=0}^{\infty}{a_{p+qm}z^{p+qm}}=\frac{1}{q}\sum_{k=0}^{q-1}{\omega ^{-kp}f\left( \omega ^kz \right)}}}\]</span></p>
-<p>其中<span class="math inline">\(\omega =e^{\frac{2\pi \mathrm{i}}{q}}\)</span>.</p>
-<p>于是</p>
-<p><span class="math display">\[\displaystyle{\sum_{n=0}^{\infty}{\frac{qt^{p+nq}}{p+nq}}=-\sum_{k=0}^{q-1}{\omega ^{-kp}\ln \left( 1-\omega ^kt \right)}}\]</span></p>
-<p>所以</p>
-<p><span class="math display">\[\begin{aligned}&amp;\sum_{n=0}^{\infty}{\left( \frac{1}{n+1}-\frac{q}{p+nq} \right) t^{p+nq}}
-\\
-=&amp;-t^{p-q}\ln \left( 1-t^q \right) +\sum_{n=0}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^nt \right)}
-\\
-=&amp;-t^{p-q}\ln \frac{1-t^q}{1-t}-\left( t^{p-q}-1 \right) \ln \left( 1-t \right) +\sum_{n=1}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^nt \right)}
-\end{aligned}\]</span></p>
-<p>令<span class="math inline">\(t\rightarrow 1^{-}\)</span>,那么</p>
-<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\ln q+\sum_{n=1}^{q-1}{\omega ^{-np}\ln \left( 1-\omega ^n \right)}}\]</span></p>
-<p>再用<span class="math inline">\(q-p\)</span>替代<span class="math inline">\(p\)</span>,得</p>
-<p><span class="math display">\[\displaystyle{\psi \left( \frac{q-p}{q} \right) =-\gamma -\ln q+\sum_{n=1}^{q-1}{\omega ^{-n\left( q-p \right)}\ln \left( 1-\omega ^n \right)}}\]</span></p>
-<p>两式相加，得</p>
-<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) +\psi \left( \frac{q-p}{q} \right) =-2\gamma-2\ln q+2\sum_{n=1}^{q-1}{\cos \left( \frac{2n\pi p}{q} \right) \ln \left( 1-\omega ^n \right)}}\]</span></p>
-<p>右式的实部为：</p>
-<p><span class="math display">\[\begin{aligned}\mathfrak{R} \left[ \ln \left( 1-\omega ^n \right) \right] &amp;=\frac{1}{2}\ln \left| 1-\omega ^n \right|
-\\
-&amp;=\frac{1}{2}\ln \left| 1-\cos \frac{2n\pi}{q}+\mathrm{i}\sin \frac{2n\pi}{q} \right|
-\\
-&amp;=\frac{1}{2}\ln \left[ \left( 1-\cos \frac{2n\pi}{q} \right) ^2+\sin ^2\frac{2n\pi}{q} \right] 
-\\
-&amp;=\frac{1}{2}\ln \left( 2-2\cos \frac{2n\pi}{q} \right) 
-\\
-&amp;=\frac{1}{2}\ln \left( 4\sin ^2\frac{n\pi}{q} \right) 
-\\
-&amp;=\ln \left( 2\sin \frac{n\pi}{q} \right) \end{aligned}\]</span></p>
-<p>即</p>
-<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) +\psi \left( \frac{q-p}{q} \right) =-2\gamma-2\ln q+2\sum_{n=1}^{q-1}{\cos \left( \frac{2n\pi p}{q} \right) \ln \left( 2\sin \frac{n\pi}{q} \right)}}\]</span></p>
-<p>再利用digamma函数的反射公式：</p>
-<p><span class="math display">\[\psi \left( x \right) -\psi \left( 1-x \right) =-\pi \cot \pi x\]</span></p>
-<p>故</p>
-<p><span class="math display">\[\displaystyle{\psi \left( \frac{p}{q} \right) -\psi \left( \frac{q-p}{q} \right) =-\pi \cot \left( \frac{p\pi}{q} \right) }\]</span></p>
-<p>于是便证明了</p>
-<p><span class="math display">\[\boxed{\color{blue}{\displaystyle{\psi \left( \frac{p}{q} \right) =-\gamma -\frac{\pi}{2}\cot \left( \frac{p\pi}{q} \right) -\ln q+\sum_{n=1}^{q-1}{\cos \left( \frac{2n\pi p}{q} \right) \ln \left( 2\sin \frac{n\pi}{q} \right)}}}}\]</span></p>
-<p>有了这个公式，便可以很快的求出一些不那么“显然的”值：</p>
-<p><span class="math display">\[\begin{aligned}\psi \left( \frac{2}{5} \right) &amp;=-\gamma -\frac{1}{2}\sqrt{1-\frac{2}{\sqrt{5}}}\pi +\frac{\sqrt{5}\mathrm{arccoth}\, \sqrt{5}}{2}-\frac{5\ln 5}{4}
-\\
-\psi \left( \frac{1}{8} \right) &amp;=-\gamma -\frac{\sqrt{2}+1}{2}\pi -\sqrt{2}\mathrm{arccoth}\, \sqrt{2}-4\ln 2
-\\
-\psi \left( \frac{1}{20} \right) &amp;=-\gamma -\frac{1+\sqrt{5}+\sqrt{5+2\sqrt{5}}}{2}\pi -3\ln 2-\frac{5\ln 5}{4}-\frac{3\sqrt{5}\ln 2}{4}
-\\
-&amp;\quad+\frac{3\sqrt{5}}{4}\ln \left( 3-\sqrt{5} \right) -\frac{\sqrt{10-2\sqrt{5}}}{2}\ln \left( \sqrt{5-2\sqrt{5}}+\sqrt{5}-1 \right) 
-\\
-&amp;\quad+\sqrt{\frac{5+\sqrt{5}}{2}}\ln \left( \sqrt{5}+1-\sqrt{5+2\sqrt{5}} \right) \end{aligned}\]</span></p>
-]]></content>
-      <categories>
-        <category>特殊函数</category>
-      </categories>
-      <tags>
-        <tag>特殊函数</tag>
+        <tag>积分</tag>
       </tags>
   </entry>
 </search>
